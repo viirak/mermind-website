@@ -1,15 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
 
-import cloudflare from '@astrojs/cloudflare';
+import partytown from "@astrojs/partytown";
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true
-    },
+	site: "https://mermind.ai",
+	output: "static",
 
-    imageService: "cloudflare"
-  })
+	image: {
+		service: {
+			entrypoint: "@astrojs/image/sharp",
+			config: {
+				quality: 80,
+				format: ["webp", "avif", "jpeg"],
+			},
+		},
+	},
+
+	integrations: [partytown()],
 });

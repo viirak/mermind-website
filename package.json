@@ -8,10 +8,10 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"preview": "astro build && wrangler pages dev ./dist",
+		"preview": "astro build && wrangler pages dev",
 		"astro": "astro",
 		"generate-types": "wrangler types",
-		"deploy": "astro build && wrangler pages deploy ./dist",
+		"deploy": "astro build && wrangler pages deploy",
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {

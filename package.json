@@ -1,25 +1,26 @@
 {
-	"name": "mermind-website",
-	"type": "module",
-	"version": "0.0.1",
-	"engines": {
-		"node": ">=22.12.0"
-	},
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro build && wrangler pages dev",
-		"astro": "astro",
-		"generate-types": "wrangler types",
-		"deploy": "astro build && wrangler pages deploy",
-		"cf-typegen": "wrangler types"
-	},
-	"dependencies": {
-		"@astrojs/cloudflare": "^13.1.2",
-		"astro": "^6.0.5"
-	},
-	"devDependencies": {
-		"@types/node": "^25.5.0",
-		"wrangler": "^4.74.0"
-	}
+  "name": "mermind-website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro build && wrangler pages dev",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "astro build && wrangler pages deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.2",
+    "@astrojs/partytown": "^2.1.5",
+    "astro": "^6.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "wrangler": "^4.74.0"
+  }
 }

@@ -7,10 +7,9 @@
 	"name": "mermind-website",
 	"compatibility_date": "2026-03-12",
 	"compatibility_flags": [],
-	"pages_build_output_dir": "./dist",
 	"observability": {
 		"enabled": true
-	}
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

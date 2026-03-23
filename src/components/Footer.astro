@@ -17,32 +17,12 @@ import Container from "./Container.astro";
       </div>
       <div class="links">
         <div class="group-nav">
-          <a href="#" class="pyramid-icon" title="Scroll Top">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M2.5 16.88a1 1 0 0 1-.32-1.43l9-13.02a1 1 0 0 1 1.64 0l9 13.01a1 1 0 0 1-.32 1.44l-8.51 4.86a2 2 0 0 1-1.98 0Z"
-              />
-              <path d="M12 2v20" />
-            </svg>
-          </a>
           <nav class="menu">
             <a href="/" title="Go to Home">Home</a>
-            <a href="/products" title="Explore our Products">Products</a>
             <a href="/approach" title="Learn about our Approach">Approach</a>
             <a href="/about" title="Learn more About Us">About</a>
             <a href="/contact" title="Contact Us">Contact</a>
             <a href="/blog" title="Read our Blog">Blog</a>
-            <a href="/share-problem" title="Share a Problem">Share a Problem</a>
           </nav>
         </div>
         <nav class="socials">
@@ -115,6 +95,8 @@ import Container from "./Container.astro";
   }
 
   .links {
+    position: relative;
+    left: -0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -228,13 +210,3 @@ import Container from "./Container.astro";
     transition: opacity 0.25s ease-in-out;
   }
 </style>
-
-<script is:inline>
-  document.querySelector(".pyramid-icon").addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
-</script>

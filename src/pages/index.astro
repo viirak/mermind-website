@@ -1,8 +1,48 @@
 ---
-import type { Fragment } from "astro/dist/runtime/server";
 import Layout from "../Layout.astro";
+import Header from "../components/Header.astro";
+import HeaderHero from "../components/HeaderHero.astro";
+import Button from "../components/elements/Button.astro";
+import ArrowRight from "../icons/ArrowRight.astro";
+
+const {
+	headerColor1 = "rgba(200, 240, 240, 0.1)",
+	headerColor2 = "rgba(220, 220, 220, 0.1)",
+	headerColor3 = "rgba(228, 228, 228, 0.1)",
+	headerLinearColor1 = "rgba(88, 88, 88, 0.1)",
+	headerLinearColor2 = "rgba(230, 230, 230, 0.1)",
+} = Astro.props || {};
 ---
 
-<Layout title="Mermind" description="Mermind">
-	<h1>Mermind</h1>
+<Layout title="Mermind" description="The neutral operational intelligence layer for e-commerce">
+	<Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={headerLinearColor1} linearColor2={headerLinearColor2}>
+    <HeaderHero variant="centered" size="lg" altTitle="E-commerce Operation" title="Your operations are more complex than your tools are telling you.">
+      <slot slot="lead">
+        Stop guessing. Start understanding what is actually happening across your systems, identifies what is going wrong before damage occurs, and helps your team act on what actually matters.
+      </slot>
+      <slot slot="cta">
+        <div class="text--cta">
+          <Button
+            label="Join the waitlist"
+            variant="primary"
+            size="lg"
+            href="/#waitlist"
+          >
+          </Button>
+          <Button
+            label="Learn more"
+            variant="outlined"
+            size="lg"
+            href="/approach"
+            dimmed
+          >
+            <slot slot="contentRight">
+              <ArrowRight />
+            </slot>
+          </Button>
+        </div>
+      </slot>
+    </HeaderHero>
+  </Header>
+	<main></main>
 </Layout>

@@ -1,0 +1,109 @@
+---
+import Container from "./Container.astro";
+import Hbar from "./HeaderBar.astro";
+
+// default values
+const {
+	color1 = "rgba(185, 127, 28, 0.1)",
+	color2 = "rgba(169, 165, 55, 0.1)",
+	color3 = "rgba(183, 110, 49, 0.1)",
+	linearColor1 = "rgba(185, 127, 28, 0.1)",
+	linearColor2 = "rgba(169, 165, 55, 0.1)",
+} = Astro.props || {};
+---
+
+<header>
+  <div class="bg">
+    <span class="c1"></span>
+    <span class="c2"></span>
+    <span class="c3"></span>
+    <span class="s1"></span>
+    <span class="s2"></span>
+    <span class="s3"></span>
+  </div>
+  <Hbar />
+  <Container>
+    <div class="content">
+      <slot />
+    </div>
+  </Container>
+</header>
+
+<style define:vars={{ color1, color2, color3, linearColor1, linearColor2 }}>
+  header {
+    position: relative;
+    padding-top: 9em;
+    padding-bottom: 2em;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    @media only screen and (min-width: 818px) {
+      padding-bottom: 4em;
+    }
+  }
+
+  .bg .c1,
+  .bg .c2,
+  .bg .c3 {
+    position: absolute;
+    z-index: 0;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+  }
+
+  .bg .c1 {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    box-shadow: 0 2px 400px 550px var(--color1);
+  }
+
+  .bg .c2 {
+    top: 0;
+    right: 0;
+    box-shadow: 0 2px 500px 600px var(--color2);
+  }
+
+  .bg .c3 {
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    box-shadow: 0 2px 500px 600px var(--color3);
+  }
+
+  .bg .s1 {
+    background: linear-gradient(110deg, var(--linearColor1), var(--linearColor2));
+    transform: rotate(-30deg);
+    position: absolute;
+    bottom: -190px;
+    left: -90px;
+    width: 600px;
+    height: 250px;
+  }
+
+  .bg .s2 {
+    background: linear-gradient(-70deg, var(--linearColor1), var(--linearColor2));
+    transform: rotate(-30deg);
+    position: absolute;
+    top: -150px;
+    left: 0px;
+    width: 600px;
+    height: 300px;
+  }
+
+  .bg .s3 {
+    background: linear-gradient(-70deg, var(--linearColor1), var(--linearColor2));
+    transform: rotate(-30deg);
+    position: absolute;
+    top: -50px;
+    right: 0px;
+    width: 400px;
+    height: 150px;
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    min-height: 1em;
+  }
+</style>

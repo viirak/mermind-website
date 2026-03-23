@@ -1,0 +1,330 @@
+---
+import Container from "./Container.astro";
+import Logo from "./Logo.astro";
+import ThemeMode from "./ThemeMode.astro";
+import Button from "./elements/Button.astro";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="hbar-area">
+  <div class="hbar">
+    <div class="padder">
+        <div class="logo">
+          <Logo />
+        </div>
+        <nav class="menu">
+          <a class={currentPath === "/" ? "active" : ""} href="/">Home</a>
+          <a class={currentPath === "/approach" ? "active" : ""} href="/approach"
+            >Approach</a
+          >
+          <a class={currentPath === "/about" ? "active" : ""} href="/about"
+            >About</a
+          >
+          <a class={currentPath === "/contact" ? "active" : ""} href="/contact"
+            >Contact</a
+          >
+          <a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a>
+        </nav>
+      <div class="ctrl">
+        <Button
+          label="Get in Touch"
+          variant="primary"
+          size="sm"
+          href="/contact"
+        />
+        <ThemeMode />
+      </div>
+      <div class="mobile-ctrl">
+        <button class="hamburger" onclick="toggleMenu()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="menu-icon"
+          >
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="x-icon"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu">
+  <Container>
+    <div class="content">
+      <nav class="menu">
+        <a class={currentPath === "/" ? "active" : ""} href="/">Home</a>
+        <a class={currentPath === "/approach" ? "active" : ""} href="/approach"
+          >Approach</a
+        >
+        <a class={currentPath === "/about" ? "active" : ""} href="/about"
+          >About</a
+        >
+        <a class={currentPath === "/contact" ? "active" : ""} href="/contact"
+          >Contact</a
+        >
+        <a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a>
+      </nav>
+      <div class="cta">
+        <a class="cta-btn" href="/contact">Get in Touch</a>
+        <ThemeMode />
+      </div>
+    </div>
+  </Container>
+</div>
+
+<script is:inline>
+  const hbar = document.querySelector(".hbar");
+
+  // show on scroll up, hide on scroll down
+  let lastScrollY = 0;
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < lastScrollY) {
+      hbar.style.top = "20px"; // Scrolling up - show header
+    } else if (window.scrollY > 85) {
+      hbar.style.top = "-85px"; // Scrolling down and past header height
+    }
+    lastScrollY = window.scrollY;
+  });
+
+  const toggleMenu = () => {
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const hamburger = document.querySelector(".hamburger");
+    mobileMenu.classList.toggle("active");
+    hamburger.classList.toggle("active");
+    // disable scroll
+    document.body.style.overflow =
+      document.body.style.overflow === "hidden" ? "auto" : "hidden";
+  };
+</script>
+
+<style>
+  .hbar {
+    margin: 0 auto;
+    height: 65px;
+    position: fixed;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    border-radius: 3rem;
+
+    /* Glassmorphic effect - Light mode */
+    background: var(--color-background-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--color-background-glass);
+    box-shadow: 0 8px 32px 0 var(--color-shadow);
+    width: 90%;
+
+    /* Responsive */
+    @media only screen and (min-width: 606px) and (max-width: 817px) {
+      width: 606px;
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 818px) and (max-width: 1041px) {
+      width: 818px;
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 1042px) and (max-width: 1249px) {
+      width: 1042px; /* 992 + 2 * 25 */
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1250px) and (max-width: 1599px) {
+      width: 1250px; /* 1200 + 2 * 25 */
+    }
+
+    @media only screen and (min-width: 1600px) {
+      width: 1600px;
+    }
+  }
+
+  .hbar .padder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: 100%;
+
+    @media only screen and (min-width: 1042px) {
+      padding: 0 1rem 0 1.5rem;
+    }
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    max-width: 140px;
+
+    @media only screen and (min-width: 1041px) {
+      max-width: 165px;
+    }
+  }
+
+  .ctrl {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media only screen and (max-width: 1041px) {
+      display: none;
+    }
+  }
+
+  a.cta-btn {
+    text-decoration: none;
+    color: var(--color-background);
+    background: var(--color-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+  }
+
+  .mobile-ctrl {
+    display: none;
+
+    @media only screen and (max-width: 1041px) {
+      display: block;
+    }
+  }
+
+  .hbar .menu {
+    @media only screen and (max-width: 1041px) {
+      display: none;
+    }
+  }
+
+  .hbar .menu a {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .hbar .menu a.active {
+    font-weight: 600;
+  }
+
+  .hamburger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: 0.3rem;
+    display: inline-flex;
+    justify-items: center;
+    align-items: center;
+    padding: 0.3rem;
+  }
+
+  .hamburger:hover {
+    background-color: var(--color-border);
+  }
+
+  .hamburger .x-icon {
+    display: none;
+  }
+
+  .hamburger.active .menu-icon {
+    display: none;
+  }
+
+  .hamburger.active .x-icon {
+    display: block;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: var(--color-text);
+    background: rgba(235, 235, 235, 0.98);
+    z-index: 11;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s ease-in-out,
+      visibility 0.4s ease-in-out;
+
+    @media only screen and (min-width: 1041px) {
+      display: none !important;
+    }
+
+    @media only screen and (max-width: 606px) {
+      padding: 7em 2em 2em 2em;
+    }
+  }
+
+  :global([data-theme="dark"] .mobile-menu) {
+    background: rgba(40, 40, 40, 1);
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu .content {
+    padding: 7em 0 0 0.5em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu .menu {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+
+  .mobile-menu .menu a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: var(--color-link);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-menu .menu a.active {
+    font-weight: 600;
+  }
+
+  .mobile-menu .content .cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+</style>

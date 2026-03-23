@@ -1,0 +1,227 @@
+---
+import Footer from "./components/Footer.astro";
+
+const {
+	title = "Appivat",
+	description = "Appivat",
+	canonicalUrl = "https://mermind.ai",
+	ogImage = "https://mermind.ai/og-image.png",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+    <meta name="generator" content={Astro.generator}>
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonicalUrl}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:url" content={canonicalUrl}>
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <!-- Prevent FOUC by setting initial theme -->
+    <script is:inline>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const themeSourceType = localStorage.getItem("themeSourceType");
+
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+          if (!themeSourceType) {
+            localStorage.setItem("themeSourceType", "system");
+          }
+        } else {
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+          document.documentElement.setAttribute("data-theme", systemTheme);
+          localStorage.setItem("theme", systemTheme);
+          localStorage.setItem("themeSourceType", "system");
+        }
+      })();
+    </script>
+    <script
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-5FSC18TJ2R"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5FSC18TJ2R');
+    </script>
+  </head>
+  <body>
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Default to light mode */
+  :root {
+    /* Light theme palette */
+    --light-color-background: #eae8df;
+    --light-color-background-lighter: #ffffff;
+    --light-color-background-darker: #e6e3d6;
+    --light-color-background-limed: #cdecc4;
+    --light-color-background-dimmed: #e0e0e080;
+    --light-color-background-glass: rgba(255, 255, 255, 0.7);
+    --light-color-text: #1a1a1a;
+    --light-color-text-dimmed: #808080;
+    --light-color-primary: #ffa000;
+    --light-color-primary-darker: #cb8204;
+    --light-color-secondary: #dc8b00;
+    --light-color-danger: #e53e3e;
+    --light-color-border: #ddddddca;
+    --light-color-border-darker: #ccccccca;
+    --light-color-border-glass: rgba(255, 255, 255, 0.3);
+    --light-color-surface: #e1e1e1;
+    --light-color-surface-darker: #dcdbdb;
+    --light-color-link: var(--light-color-primary-darker);
+    --light-color-link-hover: var(--light-color-primary);
+    --light-color-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Define dark theme values as separate variables */
+    --dark-color-background: #1a1a1a;
+    --dark-color-background-lighter: #47473f;
+    --dark-color-background-darker: #262626;
+    --dark-color-background-limed: #25341a;
+    --dark-color-background-dimmed: #39393980;
+    --dark-color-background-glass: rgba(60, 60, 60, 0.6);
+    --dark-color-text: #f5f5f5;
+    --dark-color-text-dimmed: #808080;
+    --dark-color-primary: #ffa000;
+    --dark-color-primary-darker: #dc8b00;
+    --dark-color-secondary: #dc8b00;
+    --dark-color-danger: #e53e3e;
+    --dark-color-border: #444444ca;
+    --dark-color-border-darker: #333333ca;
+    --dark-color-border-glass: rgba(255, 255, 255, 0.1);
+    --dark-color-surface: #424242;
+    --dark-color-surface-darker: #505050;
+    --dark-color-link: var(--light-color-primary);
+    --dark-color-link-hover: var(--light-color-primary-darker);
+    --dark-color-shadow: rgba(0, 0, 0, 0.4);
+
+    /* Default to light mode */
+    --color-background: var(--light-color-background);
+    --color-background-lighter: var(--light-color-background-lighter);
+    --color-background-darker: var(--light-color-background-darker);
+    --color-background-limed: var(--light-color-background-limed);
+    --color-background-dimmed: var(--light-color-background-dimmed);
+    --color-background-glass: var(--light-color-background-glass);
+    --color-text: var(--light-color-text);
+    --color-text-dimmed: var(--light-color-text-dimmed);
+    --color-primary: var(--light-color-primary);
+    --color-primary-darker: var(--light-color-primary-darker);
+    --color-secondary: var(--light-color-secondary);
+    --color-danger: var(--light-color-danger);
+    --color-border: var(--light-color-border);
+    --color-border-darker: var(--light-color-border-darker);
+    --color-border-glass: var(--light-color-border-glass);
+    --color-surface: var(--light-color-surface);
+    --color-surface-darker: var(--light-color-surface-darker);
+    --color-link: var(--light-color-link);
+    --color-link-hover: var(--light-color-link-hover);
+    --color-shadow: var(--light-color-shadow);
+  }
+
+  /* Default light theme is already defined in :root above */
+
+  /* Dark theme when data-theme is set to dark */
+  [data-theme="dark"] {
+    /* Dark mode using predefined dark theme variables */
+    --color-background: var(--dark-color-background);
+    --color-background-lighter: var(--dark-color-background-lighter);
+    --color-background-darker: var(--dark-color-background-darker);
+    --color-background-limed: var(--dark-color-background-limed);
+    --color-background-dimmed: var(--dark-color-background-dimmed);
+    --color-background-glass: var(--dark-color-background-glass);
+    --color-text: var(--dark-color-text);
+    --color-text-dimmed: var(--dark-color-text-dimmed);
+    --color-primary: var(--dark-color-primary);
+    --color-primary-darker: var(--dark-color-primary-darker);
+    --color-secondary: var(--dark-color-secondary);
+    --color-danger: var(--dark-color-danger);
+    --color-border: var(--dark-color-border);
+    --color-border-darker: var(--dark-color-border-darker);
+    --color-border-glass: var(--dark-color-border-glass);
+    --color-surface: var(--dark-color-surface);
+    --color-surface-darker: var(--dark-color-surface-darker);
+    --color-link: var(--dark-color-link);
+    --color-link-hover: var(--dark-color-link-hover);
+    --color-shadow: var(--dark-color-shadow);
+  }
+
+  /* Explicit light theme when data-theme is set to light */
+  [data-theme="light"] {
+    /* Light mode explicitly set */
+    --color-background: var(--light-color-background);
+    --color-background-lighter: var(--light-color-background-lighter);
+    --color-background-darker: var(--light-color-background-darker);
+    --color-background-limed: var(--light-color-background-limed);
+    --color-background-dimmed: var(--light-color-background-dimmed);
+    --color-background-glass: var(--light-color-background-glass);
+    --color-text: var(--light-color-text);
+    --color-text-dimmed: var(--light-color-text-dimmed);
+    --color-primary: var(--light-color-primary);
+    --color-primary-darker: var(--light-color-primary-darker);
+    --color-secondary: var(--light-color-secondary);
+    --color-danger: var(--light-color-danger);
+    --color-border: var(--light-color-border);
+    --color-border-darker: var(--light-color-border-darker);
+    --color-border-glass: var(--light-color-border-glass);
+    --color-surface: var(--light-color-surface);
+    --color-surface-darker: var(--light-color-surface-darker);
+    --color-link: var(--light-color-link);
+    --color-link-hover: var(--light-color-link-hover);
+    --color-shadow: var(--light-color-shadow);
+  }
+
+  /* Global CSS */
+  * {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      fill 0.3s ease;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "poppins", sans-serif;
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+</style>

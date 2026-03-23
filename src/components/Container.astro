@@ -1,0 +1,44 @@
+---
+interface Props {
+	narrow?: boolean;
+}
+
+const { narrow = false } = Astro.props;
+---
+
+<div class:list={["container", narrow && `narrow`]}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    transition-duration: 0.5s;
+
+    @media only screen and (min-width: 576px) and (max-width: 817px) {
+      max-width: 576px;
+    }
+
+    @media only screen and (min-width: 818px) and (max-width: 1041px) {
+      max-width: 768px;
+    }
+
+    @media only screen and (min-width: 1042px) and (max-width: 1249px) {
+      max-width: 992px;
+    }
+
+    @media only screen and (min-width: 1250px) {
+      max-width: 1200px;
+      padding: 0;
+    }
+  }
+
+  .container.narrow {
+    @media only screen and (min-width: 1041px) {
+      max-width: 991px;
+      margin: 0 auto;
+    }
+  }
+</style>

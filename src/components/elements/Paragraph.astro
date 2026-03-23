@@ -1,0 +1,130 @@
+---
+interface Props {
+	margin?: "none" | "sm" | "md" | "lg" | "xl";
+	size?: "sm" | "lg" | "xl";
+	dimmed?: boolean;
+	centered?: boolean;
+	fit?: boolean;
+	class?: string;
+}
+
+const {
+	margin = "none",
+	size = "md",
+	dimmed = false,
+	centered = false,
+	fit = false,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<p
+  class:list={[`margin-${margin}`, `size-${size}`, className, dimmed && "dimmed", centered && "centered", fit && "fit"]}
+  {...rest}
+>
+  <slot />
+</p>
+
+<style>
+  .dimmed {
+    opacity: 0.6;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .fit {
+    max-width: 40rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .margin-none {
+    margin: 0;
+  }
+
+  .margin-sm {
+    margin: 0.5rem 0;
+  }
+
+  .margin-md {
+    margin: 1rem 0;
+    @media only screen and (min-width: 641px) {
+      margin: 1.5rem 0;
+    }
+  }
+
+  .margin-lg {
+    margin: 1.5rem 0;
+    @media only screen and (min-width: 641px) {
+      margin: 2rem 0;
+    }
+  }
+
+  .margin-xl {
+    margin: 2rem 0;
+    @media only screen and (min-width: 641px) {
+      margin: 3rem 0;
+    }
+  }
+
+  .size-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .size-lg {
+    font-size: 1.125rem;
+    line-height: 1.85rem;
+    @media only screen and (min-width: 641px) {
+      font-size: 1.175rem;
+    }
+  }
+
+  .size-xl {
+    font-size: 1.25rem;
+    line-height: 1.95rem;
+    @media only screen and (min-width: 641px) {
+      font-size: 1.35rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  .margin-lg {
+    margin-bottom: 1.5rem;
+    @media only screen and (min-width: 641px) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .margin-xl {
+    margin-bottom: 2rem;
+    @media only screen and (min-width: 641px) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .size-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .size-lg {
+    font-size: 1.125rem;
+    line-height: 1.85rem;
+    @media only screen and (min-width: 641px) {
+      font-size: 1.175rem;
+    }
+  }
+
+  .size-xl {
+    font-size: 1.25rem;
+    line-height: 1.95rem;
+    @media only screen and (min-width: 641px) {
+      font-size: 1.35rem;
+      line-height: 2.25rem;
+    }
+  }
+</style>

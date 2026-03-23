@@ -1,16 +1,8 @@
 ---
-
+import type { Fragment } from "astro/dist/runtime/server";
+import Layout from "../Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="/mermind-ico.svg" type="image/svg+xml" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Mermind</title>
-	</head>
-	<body>
-		<h1>Mermind</h1>
-	</body>
-</html>
+<Layout title="Mermind" description="Mermind">
+	<h1>Mermind</h1>
+</Layout>

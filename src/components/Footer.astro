@@ -1,0 +1,240 @@
+---
+import AppivatIcon from "../icons/AppivatIcon.astro";
+import FacebookIcon from "../icons/FacebookIcon.astro";
+import GithubIcon from "../icons/GithubIcon.astro";
+import LinkedInIcon from "../icons/LinkedInIcon.astro";
+import XIcon from "../icons/XIcon.astro";
+import Container from "./Container.astro";
+---
+
+<footer class="footer">
+  <Container>
+    <div class="content">
+      <div class="branding">
+        <div class="appivat-icon">
+          <AppivatIcon />
+        </div>
+      </div>
+      <div class="links">
+        <div class="group-nav">
+          <a href="#" class="pyramid-icon" title="Scroll Top">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M2.5 16.88a1 1 0 0 1-.32-1.43l9-13.02a1 1 0 0 1 1.64 0l9 13.01a1 1 0 0 1-.32 1.44l-8.51 4.86a2 2 0 0 1-1.98 0Z"
+              />
+              <path d="M12 2v20" />
+            </svg>
+          </a>
+          <nav class="menu">
+            <a href="/" title="Go to Home">Home</a>
+            <a href="/products" title="Explore our Products">Products</a>
+            <a href="/approach" title="Learn about our Approach">Approach</a>
+            <a href="/about" title="Learn more About Us">About</a>
+            <a href="/contact" title="Contact Us">Contact</a>
+            <a href="/blog" title="Read our Blog">Blog</a>
+            <a href="/share-problem" title="Share a Problem">Share a Problem</a>
+          </nav>
+        </div>
+        <nav class="socials">
+          <a
+            href="https://github.com/mermindai"
+            title="Mermind Github Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><GithubIcon size={32} /></a
+          >
+          <a
+            href="https://x.com/mermindai"
+            title="Mermind X Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><XIcon size={32} /></a
+          >
+          <a
+            href="https://linkedin.com/company/mermindai"
+            title="Mermind LinkedIn Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><LinkedInIcon size={32} /></a
+          >
+          <a
+            href="https://facebook.com/mermindai"
+            title="Mermind Facebook Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><FacebookIcon size={32} /></a
+          >
+        </nav>
+      </div>
+      <div class="legal">
+        <div>&copy; 2025 Mermind. All rights reserved.</div>
+        <div class="legal-links">
+          <a href="/terms" title="Read our Terms of Service"
+            >Terms of Service</a
+          >
+          <a href="/privacy" title="Read our Privacy Policy">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    padding: 3rem 0;
+  }
+
+  .branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 13rem;
+  }
+
+  .appivat-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text);
+    opacity: 0.25;
+  }
+
+  .appivat-icon:hover {
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    padding: 2rem 0;
+    @media only screen and (min-width: 1041px) {
+      flex-direction: row;
+      padding: 1rem 0;
+    }
+  }
+
+  .links .group-nav {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .links .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  .links .menu a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.8rem;
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0.55;
+  }
+
+  .links .menu a:hover {
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .links .socials {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+    @media only screen and (min-width: 1041px) {
+      margin-top: 0;
+    }
+  }
+
+  .links .socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0.25;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .links .socials a:hover {
+    opacity: 1;
+  }
+
+  .legal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    gap: 1rem;
+    color: var(--color-text-dimmed);
+    @media only screen and (min-width: 1041px) {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  .legal .legal-links {
+    font-size: smaller;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .legal .legal-links a {
+    color: var(--color-text-dimmed);
+    text-decoration: none;
+  }
+
+  .legal .legal-links a:hover {
+    color: var(--color-link);
+  }
+
+  .pyramid-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    opacity: 0.55;
+  }
+
+  .pyramid-icon:hover {
+    opacity: 1;
+    background: var(--color-border);
+    transition: opacity 0.25s ease-in-out;
+  }
+</style>
+
+<script is:inline>
+  document.querySelector(".pyramid-icon").addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+</script>

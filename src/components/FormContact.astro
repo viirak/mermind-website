@@ -1,0 +1,238 @@
+---
+import SendIcon from "../icons/SendIcon.astro";
+import Button from "./elements/Button.astro";
+import Card from "./elements/Card.astro";
+import FormField from "./elements/FormField.astro";
+import Heading from "./elements/Heading.astro";
+import Paragraph from "./elements/Paragraph.astro";
+---
+
+<Card padding="lg" outlined>
+  <div class="form-context">
+    <Heading level={2}>Message</Heading>
+    <p>
+      If you're describing a problem, it helps to include:
+      <strong>What the situation is</strong>, <strong
+        >How often it happens</strong
+      >, <strong>What you do today to work around it</strong>, and <strong
+        >Why it matters to you</strong
+      >.
+    </p>
+    <Paragraph dimmed>
+      There's no commitment implied—just a conversation about whether something
+      could be built or improved.
+    </Paragraph>
+  </div>
+
+  <form id="contact-form">
+    <!-- Honeypot: hidden from humans, bots will fill it -->
+    <div class="hp-field" aria-hidden="true">
+      <label for="website">Website</label>
+      <input
+        type="text"
+        id="website"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      >
+    </div>
+    <div class="group">
+      <FormField
+        id="name"
+        label="Your Name"
+        name="name"
+        placeholder="Your name"
+        maxlength={30}
+        required
+        transition:persist
+      />
+      <FormField
+        id="email"
+        label="Your Email"
+        name="email"
+        type="email"
+        placeholder="Your email"
+        maxlength={100}
+        required
+        transition:persist
+      />
+    </div>
+    <div class="group">
+      <FormField
+        label="Company (optional)"
+        name="company"
+        placeholder="Your company (if applicable)"
+        maxlength={100}
+        transition:persist
+      />
+      <FormField
+        label="What is this about?"
+        name="subject"
+        type="select"
+        options={[
+                  { value: "Product support", label: "Product support" },
+                  { value: "Problem to share", label: "Problem to share" },
+                  { value: "General inquiry", label: "General inquiry" },
+                  { value: "Collaboration", label: "Collaboration" },
+                  { value: "Other", label: "Other" }
+                ]}
+        required
+        transition:persist
+      />
+    </div>
+    <FormField
+      label="Message"
+      name="message"
+      type="textarea"
+      placeholder="How can we help?"
+      maxlength={500}
+      rows={5}
+      required
+      transition:persist
+    />
+    <div class="form--item actions">
+      <Button type="submit" variant="primary" label="Submit" id="submit-btn">
+        <slot slot="contentLeft">
+          <SendIcon />
+        </slot>
+      </Button>
+    </div>
+  </form>
+  <div id="alert" class="alert"></div>
+</Card>
+
+<script>
+  import { actions, isInputError } from "astro:actions";
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const alert = document.getElementById("alert") as HTMLDivElement;
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.classList.add("loading");
+      const formData = new FormData(form);
+      formData.delete("website"); // remove honeypot field
+      try {
+        const { error } = await actions.submitContact(formData);
+        if (isInputError(error)) {
+          // remove all error class
+          for (const ele of form.querySelectorAll(".error")) {
+            ele.classList.remove("error");
+          }
+          alert.classList.add("error");
+          const listElement = document.createElement("ul");
+          for (const key of Object.keys(error.fields) as Array<
+            keyof typeof error.fields
+          >) {
+            const message = error.fields[key];
+            // input element
+            const ele = document.getElementById(key.toString());
+            if (ele) ele.classList.add("error");
+            // create list item
+            const listItem = document.createElement("li");
+            listItem.textContent = message ? message.join(", ") : null;
+            listElement.appendChild(listItem);
+          }
+          alert.replaceChildren(listElement);
+        } else {
+          form.remove();
+          alert.classList.remove("error");
+          alert.classList.add("success");
+          alert.innerHTML = `<h3>Thank you for your message!</h3><p>We'll be in touch soon.</p>`;
+        }
+      } catch (e) {
+        alert.classList.add("error");
+        alert.innerHTML =
+          "<h3>Oops! Something went wrong.</h3><p>Please try again later.</p>";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("loading");
+      }
+    });
+  }
+</script>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    align-self: normal;
+  }
+
+  .form--item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .form--item.actions {
+    align-items: flex-start;
+  }
+
+  .form--item.actions :global(button[disabled]) {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form--item.actions :global(button[data-loading]) {
+    pointer-events: none;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media only screen and (min-width: 1249px) {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  }
+
+  .group .form--item {
+    flex: 1;
+  }
+
+  .alert {
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    align-self: normal;
+    background: var(--color-surface);
+  }
+
+  .alert:empty {
+    display: none;
+  }
+
+  .alert.success {
+    color: var(--color-text);
+  }
+
+  .alert.error {
+    color: #b91c1c;
+  }
+
+  .input.error {
+    border-color: #b91c1c;
+  }
+
+  :global(.alert h3),
+  :global(.alert p) {
+    margin: 0;
+  }
+</style>

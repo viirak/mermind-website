@@ -5,14 +5,20 @@ interface Props {
 	class?: string;
 	narrow?: boolean;
 	limed?: boolean;
+	dimmed?: boolean;
 	centered?: boolean;
+	border?: "top" | "bottom" | "y";
+	bg?: "dotted" | "dotted-x" | "paper-grid" | "stripes";
 }
 
 const {
 	narrow = false,
 	limed = false,
+	dimmed = false,
 	centered = false,
 	class: className,
+	border,
+	bg,
 	...rest
 } = Astro.props;
 ---
@@ -22,7 +28,10 @@ const {
     "section",
     narrow && `narrow`,
     limed && `limed`,
+    dimmed && `dimmed`,
     centered && `centered`,
+    border && `border-${border}`,
+    bg && `bg--${bg}`,
     className,
   ]}
   {...rest}
@@ -49,11 +58,49 @@ const {
     background-color: var(--color-background-limed);
   }
 
+  .section.dimmed {
+    background-color: var(--color-background-dimmed);
+  }
+
+  .section.border-top {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section.border-bottom {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section.border-y {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .section.narrow :global(.container) {
     @media only screen and (min-width: 1041px) {
       max-width: 991px;
       margin: 0 auto;
     }
+  }
+
+  .section.bg--dotted {
+    background-image: radial-gradient(circle, var(--color-surface-darker) 1px,#0000 1px);
+    background-size: 15px 15px;
+  }
+
+  .section.bg--dotted-x {
+    background-image:  radial-gradient(var(--color-surface-darker) 1px, transparent 1px), radial-gradient(var(--color-surface-darker) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0,10px 10px;
+  }
+
+  .section.bg--paper-grid {
+    background-image: linear-gradient(90deg, var(--color-surface) 1px, transparent 1px),linear-gradient(var(--color-surface) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-repeat: repeat;
+  }
+
+  .section.bg--stripes {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 32px, var(--color-surface-lighter) 32px, var(--color-surface-lighter) 64px);
   }
 
   .section--container {

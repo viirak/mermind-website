@@ -1,0 +1,113 @@
+---
+import Layout from "../Layout.astro";
+import Header from "../components/Header.astro";
+import HeaderHero from "../components/HeaderHero.astro";
+import Button from "../components/elements/Button.astro";
+import Card from "../components/elements/Card.astro";
+import Grid from "../components/elements/Grid.astro";
+import Heading from "../components/elements/Heading.astro";
+import Paragraph from "../components/elements/Paragraph.astro";
+import SVG from "../components/elements/SVG.astro";
+import Section from "../components/elements/Section.astro";
+
+const {
+	headerColor1 = "rgba(50, 40, 100, 0.2)",
+	headerColor2 = "rgba(50, 40, 100, 0.0)",
+	headerColor3 = "rgba(50, 40, 100, 0.1)",
+	linearColor1 = "rgba(50, 40, 100, 0.1)",
+	background = "linear-gradient(135deg, #00f7ff6a, #00cfff6a);",
+} = Astro.props || {};
+---
+
+<Layout
+  title="Mermind Approach"
+  description="The Mermind approach to e-commerce operational intelligence"
+  canonicalUrl="https://mermind.ai/approach"
+>
+  <Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={linearColor1} background={background}>
+    <HeaderHero
+      altTitle="How We Build"
+      title="Intelligence before automation. Understanding before action."
+      lead="Mermind is built on a clear principle: a system should be able to explain what it knows before it is trusted to act on it. We build in that order — and we do not skip steps."
+      variant="default"
+      size="default"
+    >
+    <div slot="graphic">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="0.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-messages-square-icon lucide-messages-square"
+        >
+          <path
+            d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+          />
+          <path
+            d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"
+          />
+        </svg>
+      </div>
+    </HeaderHero>
+  </Header>
+	<main>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">The Order That Matters</div>
+        <Heading level={2} size="2xl">The right sequence changes everything</Heading>
+        <Paragraph size="lg" dimmed>The instinct in most software is to automate as quickly as possible. Mermind takes a different position. Before any system earns the right to act on your operation, it must first prove that it understands it.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Prevent Before Optimize</Heading>
+          <Paragraph>Intelligence that skips prevention and jumps directly to optimization creates fragility, not efficiency. Mermind establishes a stable, accurate picture of your operation before it suggests how to improve it. You cannot improve what you do not yet understand.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Explain Before Act</Heading>
+          <Paragraph>Mermind will not surface a recommendation it cannot explain. Every insight has a traceable reason. Every alert has a clear cause. This is not a feature — it is the architectural principle that makes the intelligence trustworthy.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Earn Trust, Don't Assume It</Heading>
+          <Paragraph>Trust in a system is built through demonstrated accuracy over time, not through a promise at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational problems, and earns a broader role only as that trust compounds.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Reliability as a Foundation</Heading>
+          <Paragraph>Intelligence that operators cannot depend on consistently is not intelligence — it is a liability. We treat reliability as the non-negotiable foundation everything else is built on, not a future milestone.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+  </main>
+</Layout>

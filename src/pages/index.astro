@@ -2,7 +2,14 @@
 import Layout from "../Layout.astro";
 import Header from "../components/Header.astro";
 import HeaderHero from "../components/HeaderHero.astro";
+import WaitListForm from "../components/WaitListForm.astro";
 import Button from "../components/elements/Button.astro";
+import Card from "../components/elements/Card.astro";
+import Grid from "../components/elements/Grid.astro";
+import Heading from "../components/elements/Heading.astro";
+import Paragraph from "../components/elements/Paragraph.astro";
+import SVG from "../components/elements/SVG.astro";
+import Section from "../components/elements/Section.astro";
 import ArrowRight from "../icons/ArrowRight.astro";
 
 const {
@@ -18,7 +25,7 @@ const {
 	<Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={headerLinearColor1} linearColor2={headerLinearColor2}>
     <HeaderHero variant="centered" size="lg" altTitle="E-commerce Operation" title="Your operations are more complex than your tools are telling you.">
       <slot slot="lead">
-        Stop guessing. Start understanding what is actually happening across your systems, identifies what is going wrong before damage occurs, and helps your team act on what actually matters.
+        Stop guessing. Start understanding, what is actually happening across your systems, identifies what is going wrong before damage occurs, and helps your team act on what actually matters.
       </slot>
       <slot slot="cta">
         <div class="text--cta">
@@ -44,5 +51,416 @@ const {
       </slot>
     </HeaderHero>
   </Header>
-	<main></main>
+	<main>
+    <Section limed centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Why Issues Go Unnoticed</div>
+        <Heading level={2} size="xl">Most operational failures happen quietly</Heading>
+        <Paragraph size="lg" dimmed>
+          Modern e-commerce systems are complex and fragmented. Issues don't announce themselves — they
+          accumulate across tools, channels, and workflows, often going undetected until the cost is
+          already paid.
+        </Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+              />
+              <path d="m3.3 7 8.7 5 8.7-5" />
+              <path d="M12 22V12" />
+            </SVG>
+          </div>
+          <Heading level={3}>Silent Failures</Heading>
+          <Paragraph>
+            Products go unpublished. Tracking breaks. Margins erode. These are not edge cases — they are
+            the normal behavior of systems that were not designed to explain themselves. By the time a
+            dashboard reflects the damage, it has already happened.
+          </Paragraph>
+          <Paragraph>
+            Examples include:
+            <ul>
+              <li>Products silently going unpublished after a sync</li>
+              <li>Conversion tracking breaking after a theme update</li>
+              <li>Discounts stacking incorrectly and eroding margin</li>
+              <li>Inventory de-sync across channels causing overselling</li>
+            </ul>
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M10.88 21.94 15.46 14" />
+              <path d="M21.17 8H12" />
+              <path d="M3.95 6.06 8.54 14" />
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="4" />
+            </SVG>
+          </div>
+          <Heading level={3}>Fragmented Visibility</Heading>
+          <Paragraph>
+            Your store runs across multiple platforms, apps, and integrations. Each tool has its own view
+            of a part of your operation. No single system sees the full picture — which means no single
+            system can tell you when something meaningful goes wrong across all of them.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path
+                d="M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3"
+              />
+              <path d="M16 19h6" />
+              <path d="M19 22v-6" />
+            </SVG>
+          </div>
+          <Heading level={3}>Reactive by Design</Heading>
+          <Paragraph>
+            Most tools are built to report on what happened. They surface metrics after the fact and
+            require you to investigate and interpret. What operators actually need is to know what is
+            happening right now — and what must not happen next.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path
+                d="M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z"
+              />
+              <path
+                d="M13 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1l-.81 3.242a1 1 0 0 1-.97.758H8"
+              />
+              <path d="M14 4h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-3" />
+              <path d="M18 6h4" />
+              <path d="m5 10-2 8" />
+              <path d="m7 18 2-8" />
+            </SVG>
+          </div>
+          <Heading level={3}>Commercial Blindspots</Heading>
+          <Paragraph>
+            Most tools have a commercial stake in what they tell you. Ad platforms optimize for spend. Marketplaces optimize for their ecosystem. Apps optimize for their own retention. Mermind has no position in what the truth is — only in surfacing it accurately.
+          </Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">What Mermind Is</div>
+        <Heading level={2} size="xl">Operational intelligence: the layer your stack is missing</Heading>
+        <Paragraph size="lg" dimmed>Mermind introduces a new category to e-commerce infrastructure — operational intelligence. Not a dashboard. Not an analytics tool. A system that understands your operations, reasons about what is breaking, and surfaces what needs your attention before the damage is done.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Continuous Observation</Heading>
+          <Paragraph>
+            Mermind connects to your store and surrounding tools and monitors your operations without
+            requiring manual checks or dashboard reviews. It works in the background, continuously, so
+            you don't have to.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Pattern Understanding</Heading>
+          <Paragraph>Over time, Mermind learns what normal looks like for your specific store — your products, your workflows, your integrations. When something deviates from that baseline, it knows — even when no threshold has been crossed.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Intelligence, Not Just Alerts</Heading>
+          <Paragraph>Mermind does not just flag that something changed. It understands what changed, what caused it, and what it means for your operation — so you receive context and direction, not noise.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Proactive Prevention</Heading>
+          <Paragraph>Mermind is built to prevent problems before they become fires. It identifies silent failures, broken states, and margin leaks before they escalate — so you can act before the damage is done.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">The Intelligence Progression</div>
+        <Heading level={2} size="xl">Prevent. Fix. Improve.</Heading>
+        <Paragraph size="lg" dimmed>Operational intelligence is not a single moment of clarity. It compounds over time. Mermind is built around a deliberate progression — one that earns the right to do more only after the foundation is stable.</Paragraph>
+      </div>
+      <Grid columns={4} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Prevent</Heading>
+          <Paragraph>
+            The first job of intelligence is prevention. Mermind identifies broken states, silent
+            failures, and margin leaks before they escalate — stopping problems that most teams only
+            discover in retrospect, when the cost has already been paid.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Fix</Heading>
+          <Paragraph>
+            When something goes wrong, understanding why is half the problem. Mermind explains the root
+            cause clearly and specifically, so your team can act with precision rather than guesswork —
+            fixing the source, not managing the symptoms.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Improve</Heading>
+          <Paragraph>
+            Once your operation is stable and understood, intelligence can point toward better decisions. After the system has proven it understands your operation reliably,
+            it can surface what is actually true about your store — where the real leaks are, where
+            the real opportunities exist.
+          </Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Optimize</Heading>
+          <Paragraph>
+            As your operation grows, Mermind grows with it. It learns what works and what does not —
+            surfacing the actions that actually improve your outcomes, not just your metrics. It turns
+            intelligence into a compounding advantage.
+          </Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section limed>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Why Mermind Is Different</div>
+        <Heading level={2} size="xl">Intelligence is only useful when it has no stake in the answer</Heading>
+        <Paragraph size="lg" dimmed>Most tools that touch your operations have a commercial interest in what they tell you. Ad platforms optimize for spend. Marketplaces optimize for their ecosystem. Apps optimize for their own retention. Mermind has no position in what the truth is — only in surfacing it accurately. It does not benefit when you spend more, sell more, or use any specific tool.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>No Commercial Stake</Heading>
+          <Paragraph>Mermind's only job is to tell you what is actually happening in your operation. It has no incentive to show you better numbers than exist, or to guide you toward decisions that serve its business model over yours. Neutral intelligence is the foundation everything else is built on.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Operational Depth, Not Metric Summaries</Heading>
+          <Paragraph>Analytics tools summarize what happened at the surface level. Mermind understands the operational layer beneath your metrics — the products, settings, integrations, and signals that determine whether your store is actually functioning the way you think it is.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Works Across Your Stack</Heading>
+          <Paragraph>Mermind does not replace your existing tools. It connects to them, reads across them, and provides an intelligence layer above them — so you finally have one system that sees the full picture across everything running your operation.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Built for Real Operators</Heading>
+          <Paragraph>Mermind is designed for the people who are accountable for real outcomes — not just reports. It gives you a single point of operational truth — so every decision is based on what is actually happening, not what the last report happened to show.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Why This Matters Now</div>
+        <Heading level={2} size="xl">As systems become more autonomous, operational intelligence becomes critical infrastructure</Heading>
+        <Paragraph size="lg" dimmed>E-commerce operations are increasingly automated. More decisions are made by systems, not people. More workflows run without direct human oversight. This is the direction commerce is moving — and the gap between what is happening and what operators can see is widening.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Automation Expands Blind Spots</Heading>
+          <Paragraph>When systems act independently, problems no longer surface through human observation. They accumulate silently until the impact is measurable — and by then, it is late. A layer of intelligence that watches what automation cannot explain itself is not optional.</Paragraph>
+          </Card>
+          <Card>
+            <div class="icon">
+              <SVG size="48" dimmed>
+                <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+                <path d="M12 2v2" />
+                <path d="M5 12h14" />
+              </SVG>
+            </div>
+            <Heading level={3}>Less Oversight Requires More Understanding</Heading>
+            <Paragraph>Removing human review from operational decisions only works when the system beneath those decisions is well understood and trusted. Without that understanding, automation compounds errors as efficiently as it compounds results.</Paragraph>
+          </Card>
+          <Card>
+            <div class="icon">
+              <SVG size="48" dimmed>
+                <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+                <path d="M12 2v2" />
+                <path d="M5 12h14" />
+              </SVG>
+            </div>
+            <Heading level={3}>Trust Must Be Built Into the System</Heading>
+            <Paragraph>Operators will rely on automated systems only when they can see what those systems are doing and why. Operational intelligence is what makes that trust rational — not a feature, but the infrastructure beneath the feature.</Paragraph>
+          </Card>
+          <Card>
+            <div class="icon">
+              <SVG size="48" dimmed>
+                <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+                <path d="M12 2v2" />
+                <path d="M5 12h14" />
+              </SVG>
+            </div>
+            <Heading level={3}>Intelligence Is Not a Feature</Heading>
+            <Paragraph>Operational intelligence is not an add-on. It is the layer beneath everything else — the system that understands what is actually happening so every other tool can be accurate.</Paragraph>
+          </Card>
+        </Grid>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Who It's For</div>
+        <Heading level={2} size="xl">For operators who are responsible for outcomes, not just reports</Heading>
+        <Paragraph size="lg" dimmed>Mermind is built for the people who carry real accountability in e-commerce — where something going wrong is not a metric to investigate later, but a problem that costs real money today.</Paragraph>
+      </div>
+      <Grid columns={1} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>E-commerce Brands</Heading>
+          <Paragraph>You manage a growing store with increasing operational complexity. Products, pricing, inventory, integrations — the surface area of things that can break expands every month. Mermind gives you continuous visibility across all of it without requiring constant manual attention.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Agencies</Heading>
+          <Paragraph>You are responsible for the performance of client stores you cannot monitor around the clock. A silent failure at a client's store is your problem before it becomes theirs. Mermind surfaces issues early — before clients notice and before the damage compounds into a conversation you don't want to have.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Operators</Heading>
+          <Paragraph>You sit at the center of decisions that span multiple tools, channels, and teams. Mermind gives you a single point of operational truth — so every decision is based on what is actually happening, not what the last report happened to show.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Merchants</Heading>
+          <Paragraph>You are responsible for the performance of client stores you cannot monitor around the clock. A silent failure at a client's store is your problem before it becomes theirs. Mermind surfaces issues early — before clients notice and before the damage compounds into a conversation you don't want to have.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Current Stage</div>
+        <Heading level={2} size="xl">Mermind is in early development</Heading>
+        <Paragraph size="lg" dimmed>Mermind is in early development. We are building a narrow, reliable foundation before expanding into broader capabilities. This means fewer features, more accuracy, and a deliberate sequence that does not skip foundational steps.</Paragraph>
+      </div>
+      <Grid columns={1} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>What We're Building</Heading>
+          <Paragraph>Our current focus is on preventing margin leaks — where automation is running without oversight and bleeding profit. We are also laying the groundwork for broader operational understanding that will surface across your entire stack.</Paragraph>
+        </Card>
+        <Card limed outlined>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Join the Waitlist</Heading>
+          <Paragraph>Join the waitlist to follow along and be among the first to experience Mermind.</Paragraph>
+          <WaitListForm />
+        </Card>
+      </Grid>
+    </Section>
+  </main>
 </Layout>

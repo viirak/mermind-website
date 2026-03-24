@@ -1,0 +1,52 @@
+---
+interface IconProps {
+	size?: string;
+	fill?: string;
+	stroke?: string;
+	strokeWidth?: string;
+	dimmed?: boolean;
+	class?: string;
+}
+
+const {
+	size = "24",
+	fill = "none",
+	stroke = "currentColor",
+	strokeWidth = "1",
+	dimmed = false,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill={fill}
+  stroke={stroke}
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class:list={["icon", dimmed && "dimmed", className]}
+  {...rest}
+>
+  <slot />
+</svg>
+
+<style>
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon.dimmed {
+    opacity: 0.5;
+  }
+
+  .icon.dimmed:hover {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+</style>

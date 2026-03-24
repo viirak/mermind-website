@@ -24,6 +24,11 @@ const {
   {...rest}
 >
   <div class="content">
+    {variant !== "centered" && (
+      <div class="content--graphic mobile-only">
+        <slot name="graphic" />
+      </div>
+    )}
     <div class="content--text">
       <div class="text--heading">
         {altTitle && <span class="alt-title">{altTitle}</span>}
@@ -37,7 +42,7 @@ const {
       <slot name="cta" class="text--cta" />
     </div>
     {variant !== "centered" && (
-      <div class="content--graphic">
+      <div class="content--graphic desktop-only">
         <slot name="graphic" />
       </div>
     )}
@@ -116,6 +121,18 @@ const {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .content--graphic.mobile-only {
+    @media only screen and (min-width: 818px) {
+      display: none;
+    }
+  }
+
+  .content--graphic.desktop-only {
+    @media only screen and (max-width: 817px) {
+      display: none;
+    }
   }
 
   .hero--split .content--graphic,

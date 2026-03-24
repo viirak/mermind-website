@@ -300,9 +300,12 @@ const currentPath = Astro.url.pathname;
   }
 
   .mobile-menu .content {
-    padding: 7em 0 0 0.5em;
+    padding: 1em 0 0 0.5em;
     display: flex;
     flex-direction: column;
+    @media only screen and (min-width: 641px) {
+      padding-top: 7rem;
+    }
   }
 
   .mobile-menu .menu {

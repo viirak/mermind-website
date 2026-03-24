@@ -1,0 +1,18 @@
+---
+import Button from "./elements/Button.astro";
+import FormField from "./elements/FormField.astro";
+---
+
+<div class="waitlist-form">
+  <FormField
+      id="email"
+      label="Your Email"
+      name="email"
+      type="email"
+      placeholder="Your email"
+      maxlength={100}
+      required
+      transition:persist
+    />
+  <Button label="Join the waitlist" variant="primary" size="lg" />  
+</div>

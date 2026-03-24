@@ -31,7 +31,7 @@ const {
   <a class:list={[`btn`, variant, size, className, dimmed && "dimmed", loading && "loading"]} href={href} title={title} id={id} {...rest}>
     {loading && <div class="loading-spinner"></div>}
     {!loading && <slot name="contentLeft" />}
-    {label && <span>{label}</span>}
+    {label && label}
     {!label && <slot />}
     {!loading && <slot name="contentRight" />}
   </a>
@@ -39,7 +39,7 @@ const {
   <button type={type} class:list={[`btn`, variant, size, className, dimmed && "dimmed", loading && "loading"]} title={title} class={className} id={id} {...rest}>
     {loading && <div class="loading-spinner"></div>}
     {!loading && <slot name="contentLeft" />}
-    {label && <span>{label}</span>}
+    {label && label}
     {!label && <slot />}
     {!loading && <slot name="contentRight" />}
   </button>
@@ -50,6 +50,7 @@ const {
     position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.5rem 1.5rem;
     border-radius: 2rem;

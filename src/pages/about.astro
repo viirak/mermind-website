@@ -1,0 +1,161 @@
+---
+import Layout from "../Layout.astro";
+import Header from "../components/Header.astro";
+import HeaderHero from "../components/HeaderHero.astro";
+import WaitListForm from "../components/WaitListForm.astro";
+import Button from "../components/elements/Button.astro";
+import Card from "../components/elements/Card.astro";
+import Grid from "../components/elements/Grid.astro";
+import Heading from "../components/elements/Heading.astro";
+import Paragraph from "../components/elements/Paragraph.astro";
+import SVG from "../components/elements/SVG.astro";
+import Section from "../components/elements/Section.astro";
+
+const {
+	headerColor1 = "rgba(50, 40, 100, 0.2)",
+	headerColor2 = "rgba(50, 40, 100, 0.0)",
+	headerColor3 = "rgba(50, 40, 100, 0.1)",
+	linearColor1 = "rgba(50, 40, 100, 0.1)",
+	background = "linear-gradient(135deg, #00f7ff6a, #00cfff6a);",
+} = Astro.props || {};
+---
+
+<Layout
+  title="About Mermind"
+  description="Learn more about Mermind"
+  canonicalUrl="https://mermind.ai/about"
+>
+  <Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={linearColor1} background={background}>
+    <HeaderHero
+      altTitle="Who We Are"
+      title="We saw a gap that should not exist"
+      lead="Mermind is built by people who have worked inside real e-commerce operations — and kept running into the same problem. Not a lack of data. A lack of understanding."
+      variant="default"
+      size="default"
+    >
+    <div slot="graphic">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="0.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-messages-square-icon lucide-messages-square"
+        >
+          <path
+            d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
+          />
+          <path
+            d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"
+          />
+        </svg>
+      </div>
+    </HeaderHero>
+  </Header>
+	<main>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Where It Started</div>
+        <Heading level={2} size="xl">The problem is not new. The solution is.</Heading>
+        <Paragraph size="lg" dimmed>Mermind was born from the realization that e-commerce operations are too important to be left to incomplete pictures. The tools we use every day — dashboards, analytics, monitoring — are not designed to understand what is actually happening. They are designed to show you what they can measure.</Paragraph>
+      </div>
+      <Grid columns={1} gap="2rem">
+        <Card>
+          <Heading level={3}>The Problem</Heading>
+          <div>
+            <p>Every operator who has run a serious e-commerce operation has had the same experience.</p>
+            <p>Something breaks quietly — a listing goes down, tracking stops firing, a margin slowly erodes. Nobody notices until the numbers move. By then, the cost is already paid.</p>
+            <p>This is not a gap in effort or attention. It is a gap in infrastructure. No system was built to watch your operation the way it needs to be watched — continuously, across all your tools, with no commercial stake in what the answer is.</p>
+            <p>The tools were built to report. So teams spend their time reconstructing what happened instead of preventing what is coming.</p>
+            <p>Mermind exists to close that gap.</p>
+            <p>We did not need more dashboards. We needed a system that understands.</p>
+          </div>
+        </Card>
+      </Grid>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Our Position</div>
+        <Heading level={2} size="xl">Operational intelligence should be neutral</Heading>
+        <Paragraph size="lg" dimmed>Mermind is neutral. It does not have a position in what the truth is. It does not have a position in what is right or wrong. It does not have a position in what is best. It is neutral.</Paragraph>
+      </div>
+      <Grid columns={1} gap="2rem">
+        <Card>
+          <div>
+            <p>Every system that touches your e-commerce operation has a commercial stake in what it
+tells you. Ad platforms have an interest in your spend. Marketplaces have an interest in
+their ecosystem. Most apps optimize for their own retention, not your outcomes.
+
+Mermind is built differently. Its only job is to tell you what is true about your
+operation. No incentive to show you better numbers than exist. No position on what
+decisions you make. Just an accurate, explainable picture of what is actually happening.
+
+We believe that is what real operational intelligence requires — and why it has not
+existed until now.</p>
+          </div>
+        </Card>
+      </Grid>
+    </Section>
+    <Section bg="dotted" border="top" centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">What We Do</div>
+        <Heading level={2} size="2xl">Our Mission</Heading>
+        <Paragraph size="lg">To build a neutral operational intelligence layer that helps e-commerce teams understand what is happening in their operations, prevent what should not happen, and act with clarity at every stage of growth.</Paragraph>
+      </div>
+    </Section>
+    <Section bg="dotted" border="bottom" centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Where We're Going</div>
+        <Heading level={2} size="2xl">Our Vision</Heading>
+        <Paragraph size="lg">A future where operational complexity does not produce operational blindness. Where the systems running your business can explain themselves. And where the intelligence layer beneath your operation compounds in value the longer it runs — not as a product you manage, but as infrastructure you depend on.</Paragraph>
+      </div>
+    </Section>
+    <Section centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">How We Build</div>
+        <Heading level={2} size="2xl">Our Values</Heading>
+        <Paragraph size="lg">We would rather do one thing correctly than many things approximately. A system that is sometimes wrong about important things is not a better tool — it is noise that costs you decisions. We start narrow and expand only when the foundation is proven.</Paragraph>
+      </div>
+      <Grid columns={4} gap="2rem">
+        <Card>
+          <Heading level={3}>Accuracy Over Breadth</Heading>
+          <Paragraph>We would rather do one thing correctly than many things approximately. A system that is sometimes wrong about important things is not a better tool — it is noise that costs you decisions. We start narrow and expand only when the foundation is proven.</Paragraph>
+        </Card>
+        <Card>
+          <Heading level={3}>Explanation Before Action</Heading>
+          <Paragraph>Mermind will not surface a recommendation it cannot explain. Every insight has a traceable reason. Every alert has a clear cause. This is not a feature — it is the architectural principle that makes the intelligence trustworthy.</Paragraph>
+        </Card>
+        <Card>
+          <Heading level={3}>Earn Trust, Don't Assume It</Heading>
+          <Paragraph>Trust in a system is built through demonstrated accuracy over time, not through a promise at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational problems, and earns a broader role only as that trust compounds.</Paragraph>
+        </Card>
+        <Card>
+          <Heading level={3}>Reliability as a Foundation</Heading>
+          <Paragraph>Intelligence that operators cannot depend on consistently is not intelligence — it is a liability. We treat reliability as the non-negotiable foundation everything else is built on, not a future milestone.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section bg="paper-grid" centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Where We Are</div>
+        <Heading level={2} size="2xl">Current Status</Heading>
+        <Paragraph size="lg">Mermind is in early development. We are building a narrow, reliable foundation before expanding into broader capabilities. This means fewer features, more accuracy, and a deliberate sequence that does not skip foundational steps.</Paragraph>
+        <Paragraph size="lg">If you manage complex e-commerce operations and want to follow what we are building, the waitlist is the right place to start.</Paragraph>
+      </div>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Get Early Access</div>
+        <Heading level={2} size="2xl">Join the Waitlist</Heading>
+        <Paragraph size="lg">Mermind is evolving step by step. Join the waitlist to stay informed and gain early access.</Paragraph>
+      </div>
+      <Card padding="lg" outlined>
+        <WaitListForm />
+      </Card>
+    </Section>
+  </main>
+</Layout>

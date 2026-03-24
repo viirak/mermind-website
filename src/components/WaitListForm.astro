@@ -4,15 +4,36 @@ import FormField from "./elements/FormField.astro";
 ---
 
 <div class="waitlist-form">
-  <FormField
-      id="email"
-      label="Your Email"
-      name="email"
-      type="email"
-      placeholder="Your email"
-      maxlength={100}
-      required
-      transition:persist
-    />
-  <Button label="Join the waitlist" variant="primary" size="lg" />  
+  <div class="form-group">
+    <FormField
+        id="email"
+        label="Your Email"
+        name="email"
+        type="email"
+        placeholder="Your email"
+        maxlength={100}
+        required
+        transition:persist
+      />
+    <Button label="Join the waitlist" variant="primary" size="lg" />
+  </div>
+  <div class="disclaimer">No spam. Just updates as we make progress.</div>
 </div>
+
+<style>
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @media only screen and (min-width: 641px) {
+      flex-direction: row;
+      align-items: flex-end;
+    }
+  }
+
+  .disclaimer {
+    font-size: 0.875rem;
+    color: var(--color-text-dimmed);
+    margin-top: 0.5rem;
+  }
+</style>

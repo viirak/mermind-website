@@ -53,7 +53,11 @@ const {
   .content {
     display: flex;
     flex-direction: column;
+    padding: 3rem 0;
     gap: 2rem;
+    @media only screen and (min-width: 818px) {
+      padding: 5rem 0;
+    }
   }
 
   /* Variant: Split (Default behavior kept for backward compatibility if needed, but explicit split is better) */
@@ -131,8 +135,13 @@ const {
   .content--text .text--cta,
   :global(.content--text .text--cta) {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    @media only screen and (min-width: 641px) {
+      flex-direction: row;
+    }
   }
 
   /* === Typography === */

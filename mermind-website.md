@@ -55,6 +55,9 @@ already paid.
   require you to investigate and interpret. What operators actually need is to know what is
   happening right now — and what must not happen next.
 
+- **Commercial Blindspots**
+  Most tools have a commercial stake in what they tell you. Ad platforms optimize for spend. Marketplaces optimize for their ecosystem. Apps optimize for their own retention. Mermind has no position in what the truth is — only in surfacing it accurately.
+
 ---
 
 ## Section: Category Definition
@@ -85,6 +88,11 @@ about what is breaking, and surfaces what needs your attention before the damage
 - **Intelligence, Not Just Alerts**
   Mermind does not just flag that something changed. It understands what changed, what caused
   it, and what it means for your operation — so you receive context and direction, not noise.
+
+- **Proactive Prevention**
+  Mermind is built to prevent problems before they become fires. It identifies silent failures,
+  broken states, and margin leaks before they escalate — so you can act before the damage is
+  done.
 
 ---
 
@@ -117,6 +125,11 @@ the foundation is stable.
   Once your operation is stable and understood, intelligence can point toward better decisions. After the system has proven it understands your operation reliably
   Not by optimizing blindly, but by revealing what is actually true about your store — where
   the real leaks are, where the real opportunities exist.
+
+- **Optimize**
+  As your operation grows, Mermind grows with it. It learns what works and what does not —
+  surfacing the actions that actually improve your outcomes, not just your metrics. It turns
+  intelligence into a compounding advantage.
 
 ---
 
@@ -152,6 +165,11 @@ accurately. It does not benefit when you spend more, sell more, or use any speci
   provides an intelligence layer above them — so you finally have one system that sees the
   full picture across everything running your operation.
 
+- **Built for Real Operators**
+  Mermind is designed for the people who are accountable for real outcomes — not just reports.
+  It gives you a single point of operational truth — so every decision is based on what is
+  actually happening, not what the last report happened to show.
+
 ---
 
 ## Section: Future Context
@@ -183,6 +201,10 @@ moving — and the gap between what is happening and what operators can see is w
   Operators will rely on automated systems only when they can see what those systems are doing
   and why. Operational intelligence is what makes that trust rational — not a feature, but the
   infrastructure beneath the feature.
+
+- **Intelligence Is Not a Feature**
+  Operational intelligence is not an add-on. It is the layer beneath everything else — the
+  system that understands what is actually happening so every other tool can be accurate.
 
 ---
 
@@ -216,6 +238,11 @@ going wrong is not a metric to investigate later, but a problem that costs real 
   You sit at the center of decisions that span multiple tools, channels, and teams. Mermind
   gives you a single point of operational truth — so every decision is based on what is
   actually happening, not what the last report happened to show.
+
+- **Developers**
+  You build and maintain the systems that run e-commerce operations. Mermind gives you
+  visibility into how those systems are actually performing — not just how they are
+  supposed to perform — so you can fix problems before they become fires.
 
 ---
 
@@ -279,6 +306,9 @@ first prove that it understands it.
   at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational
   problems, and earns a broader role only as that trust compounds.
 
+- **Neutral Understanding**
+  Mermind has no stake in what it tells you. It does not sell ads, take a margin on transactions, or benefit from the decisions you make. Its only function is to tell you what is actually true about your operation.
+
 ---
 
 ## Section: Continuous Understanding
@@ -311,6 +341,11 @@ and everything else is built on top of that foundation.
   The goal is not to surface everything. It is to surface the right things. Mermind
   filters for what is meaningful and delivers only what warrants your attention — so
   clarity is the output, not more noise to manage.
+
+- **Smarter Over Time**
+  Mermind learns from every observation. The more it runs, the more it understands. The
+  more it understands, the more accurate it gets. Intelligence compounds over time — not
+  as a feature, but as a fundamental property of the system.
 
 ---
 
@@ -345,6 +380,11 @@ Mermind does that work.
   is noise. Mermind surfaces what matters at the moment it is still possible to act on it
   — with enough explanation to make the action clear.
 
+- **Act with Confident**
+  When you act on a Mermind insight, you are acting on a specific, explainable reason —
+  not a guess or a confidence score without context. That changes how quickly and
+  confidently your team can move.
+
 ---
 
 ## Section: Explanation
@@ -371,6 +411,11 @@ in a way that makes the next step obvious.
   When you act on a Mermind insight, you are acting on a specific, explainable reason —
   not a guess or a confidence score without context. That changes how quickly and
   confidently your team can move.
+
+- **Renforcement Learning**
+  Mermind does not just learn from what you tell it. It learns from what you do. Every
+  action you take in response to an insight teaches Mermind what matters — so over time, it
+  gets better at surfacing what actually requires attention.
 
 - **Built for Real Operators**
   Mermind does not assume you have a data team to translate its outputs. Insights are

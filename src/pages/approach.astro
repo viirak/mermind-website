@@ -2,6 +2,7 @@
 import Layout from "../Layout.astro";
 import Header from "../components/Header.astro";
 import HeaderHero from "../components/HeaderHero.astro";
+import WaitListForm from "../components/WaitListForm.astro";
 import Button from "../components/elements/Button.astro";
 import Card from "../components/elements/Card.astro";
 import Grid from "../components/elements/Grid.astro";
@@ -64,7 +65,7 @@ const {
       </div>
       <Grid columns={2} gap="2rem">
         <Card>
-          <div class="icon">
+          <div class="icon icon--highlight">
             <SVG size="48" dimmed>
               <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
               <path d="M12 2v2" />
@@ -75,7 +76,7 @@ const {
           <Paragraph>Intelligence that skips prevention and jumps directly to optimization creates fragility, not efficiency. Mermind establishes a stable, accurate picture of your operation before it suggests how to improve it. You cannot improve what you do not yet understand.</Paragraph>
         </Card>
         <Card>
-          <div class="icon">
+          <div class="icon icon--highlight">
             <SVG size="48" dimmed>
               <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
               <path d="M12 2v2" />
@@ -86,7 +87,7 @@ const {
           <Paragraph>Mermind will not surface a recommendation it cannot explain. Every insight has a traceable reason. Every alert has a clear cause. This is not a feature — it is the architectural principle that makes the intelligence trustworthy.</Paragraph>
         </Card>
         <Card>
-          <div class="icon">
+          <div class="icon icon--highlight">
             <SVG size="48" dimmed>
               <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
               <path d="M12 2v2" />
@@ -97,7 +98,7 @@ const {
           <Paragraph>Trust in a system is built through demonstrated accuracy over time, not through a promise at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational problems, and earns a broader role only as that trust compounds.</Paragraph>
         </Card>
         <Card>
-          <div class="icon">
+          <div class="icon icon--highlight">
             <SVG size="48" dimmed>
               <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
               <path d="M12 2v2" />
@@ -108,6 +109,164 @@ const {
           <Paragraph>Intelligence that operators cannot depend on consistently is not intelligence — it is a liability. We treat reliability as the non-negotiable foundation everything else is built on, not a future milestone.</Paragraph>
         </Card>
       </Grid>
+    </Section>
+    <Section bg="dotted" border="y" centered>
+      <div slot="header" class="section--header">
+        <div class="alt-title">Visibility as Foundation</div>
+        <Heading level={2} size="2xl">Visibility is the prerequisite for everything else</Heading>
+        <Paragraph size="lg" dimmed>You cannot govern what you cannot see. You cannot improve what you do not understand. Mermind starts by building an accurate, continuously updated picture of your operation — and everything else is built on top of that foundation.</Paragraph>
+      </div>
+      <Grid columns={3} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Always On, Never Manual</Heading>
+          <Paragraph>Mermind observes your systems continuously without requiring you to check dashboards, run queries, or investigate manually. The intelligence works in the background so your attention stays on decisions that actually require it.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Context-Aware Interpretation</Heading>
+          <Paragraph>Events in e-commerce rarely mean the same thing in every context. A spike in returns means something different depending on your category, your season, and what changed recently in your store. Mermind interprets signals within the context of your specific operation — not in the abstract.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Focused, Not Exhaustive</Heading>
+          <Paragraph>The goal is not to surface everything. It is to surface the right things. Mermind filters for what is meaningful and delivers only what warrants your attention — so clarity is the output, not more noise to manage.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section>
+      <div slot="header" class="section--header">
+        <div class="alt-title">From Signal to Understanding</div>
+        <Heading level={2} size="2xl">Raw signals do not become useful on their own</Heading>
+        <Paragraph size="lg" dimmed>E-commerce systems generate enormous volumes of data. The problem is not access to information — it is the work required to turn that information into something actionable. Mermind does that work.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Signal Correlation</Heading>
+          <Paragraph>Most operational issues are not visible in a single data point. They emerge from patterns across systems — a product change here, a tracking gap there, a margin shift in between. Mermind connects those signals into a coherent picture that no single tool in your stack can see on its own.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Root Cause Analysis</Heading>
+          <Paragraph>Problems in e-commerce are rarely simple. A product going out of stock is not just a stock issue — it is a symptom of a deeper problem that spans inventory, pricing, and sales. Mermind untangles the cause-and-effect so you can address the root, not the symptom.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Clarity at the Right Moment</Heading>
+          <Paragraph>Intelligence delivered too late is a post-mortem. Intelligence delivered without context is noise. Mermind surfaces what matters at the moment it is still possible to act on it — with enough explanation to make the action clear.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Act with Confidence</Heading>
+          <Paragraph>When you act on a Mermind insight, you are acting on a specific, explainable reason — not a guess or a confidence score without context. That changes how quickly and confidently your team can move.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section border="y">
+      <div slot="header" class="section--header">
+        <div class="alt-title">Beyond Detection</div>
+        <Heading level={2} size="2xl">Understanding why is what makes action possible</Heading>
+        <Paragraph size="lg" dimmed>Detection tells you that something changed. Understanding tells you what to do about it. Mermind is built around explanation — not just identifying issues, but communicating them in a way that makes the next step obvious.</Paragraph>
+      </div>
+      <Grid columns={2} gap="2rem">
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Clear, Traceable Reasoning</Heading>
+          <Paragraph>Every insight Mermind surfaces comes with a clear explanation of what happened, what caused it, and what it means for your operation. No opaque scores. No unexplained flags. If Mermind cannot explain it, it does not surface it.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Decisions Backed by Evidence</Heading>
+          <Paragraph>When you act on a Mermind insight, you are acting on a specific, explainable reason — not a guess or a confidence score without context. That changes how quickly and confidently your team can move.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Reinforcement Learning</Heading>
+          <Paragraph>Mermind does not just learn from what you tell it. It learns from what you do. Every action you take in response to an insight teaches Mermind what matters — so over time, it gets better at surfacing what actually requires attention.</Paragraph>
+        </Card>
+        <Card>
+          <div class="icon">
+            <SVG size="48" dimmed>
+              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
+              <path d="M12 2v2" />
+              <path d="M5 12h14" />
+            </SVG>
+          </div>
+          <Heading level={3}>Built for Real Operators</Heading>
+          <Paragraph>Mermind is designed for the people who are accountable for real outcomes — not just reports. It gives you a single point of operational truth — so every decision is based on what is actually happening, not what the last report happened to show.</Paragraph>
+        </Card>
+      </Grid>
+    </Section>
+    <Section bg="stripes">
+      <div slot="header" class="section--header">
+        <div class="alt-title">Follow the progress</div>
+        <Heading level={2} size="2xl">Join the Waitlist</Heading>
+        <Paragraph size="lg">Mermind is evolving step by step. Join the waitlist to stay informed and gain early access.</Paragraph>
+      </div>
+      <Card padding="lg" outlined>
+        <WaitListForm />
+      </Card>
     </Section>
   </main>
 </Layout>

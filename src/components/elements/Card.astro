@@ -36,7 +36,7 @@ const {
 <style>
   .card {
     padding: 2rem;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-background-lighter);
     border-radius: 1rem;
     background: var(--color-background-lighter);
     box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.1);
@@ -108,7 +108,7 @@ const {
   }
 
   .card.striped {
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 32px, var(--color-surface-lighter) 32px, var(--color-surface-lighter) 64px);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 32px, var(--color-background) 32px, var(--color-background) 64px);
   }
 
   .card-body--content {
@@ -147,5 +147,14 @@ const {
 
   :global(.card.centered .card--header.narrow) {
     margin: 0 auto;
+  }
+
+  :global(.icon--highlight) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
   }
 </style>

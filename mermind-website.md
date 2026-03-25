@@ -306,8 +306,8 @@ first prove that it understands it.
   at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational
   problems, and earns a broader role only as that trust compounds.
 
-- **Neutral Understanding**
-  Mermind has no stake in what it tells you. It does not sell ads, take a margin on transactions, or benefit from the decisions you make. Its only function is to tell you what is actually true about your operation.
+- **Reliability as a Foundation**
+  Intelligence that operators cannot depend on consistently is not intelligence — it is a liability. We treat reliability as the non-negotiable foundation everything else is built on, not a future milestone. 
 
 ---
 

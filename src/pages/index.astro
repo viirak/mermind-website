@@ -52,7 +52,7 @@ const {
     </HeaderHero>
   </Header>
 	<main>
-    <Section centered bg="dotted">
+    <Section bg="dotted">
       <div slot="header" class="section--header">
         <div class="alt-title">Why Issues Go Unnoticed</div>
         <Heading level={2} size="2xl">Most operational failures happen quietly</Heading>
@@ -78,15 +78,6 @@ const {
             Products go unpublished. Tracking breaks. Margins erode. These are not edge cases — they are
             the normal behavior of systems that were not designed to explain themselves. By the time a
             dashboard reflects the damage, it has already happened.
-          </Paragraph>
-          <Paragraph>
-            Examples include:
-            <ul>
-              <li>Products silently going unpublished after a sync</li>
-              <li>Conversion tracking breaking after a theme update</li>
-              <li>Discounts stacking incorrectly and eroding margin</li>
-              <li>Inventory de-sync across channels causing overselling</li>
-            </ul>
           </Paragraph>
         </Card>
         <Card>
@@ -202,13 +193,13 @@ const {
         </Card>
       </Grid>
     </Section>
-    <Section centered bg="paper-grid">
+    <Section bg="paper-grid">
       <div slot="header" class="section--header">
         <div class="alt-title">The Intelligence Progression</div>
         <Heading level={2} size="2xl">Prevent. Fix. Improve.</Heading>
         <Paragraph size="lg" dimmed>Operational intelligence is not a single moment of clarity. It compounds over time. Mermind is built around a deliberate progression — one that earns the right to do more only after the foundation is stable.</Paragraph>
       </div>
-      <Grid columns={4} gap="2rem">
+      <Grid columns={2} gap="2rem">
         <Card>
           <div class="icon">
             <SVG size="48" dimmed>
@@ -377,13 +368,13 @@ const {
           </Card>
         </Grid>
     </Section>
-    <Section bg="dotted-x" border="y">
+    <Section bg="dotted-x" border="y" centered>
       <div slot="header" class="section--header">
         <div class="alt-title">Who It's For</div>
         <Heading level={2} size="xl">For operators who are responsible for outcomes, not just reports</Heading>
         <Paragraph size="lg" dimmed>Mermind is built for the people who carry real accountability in e-commerce — where something going wrong is not a metric to investigate later, but a problem that costs real money today.</Paragraph>
       </div>
-      <Grid columns={1} gap="2rem">
+      <Grid columns={3} gap="2rem">
         <Card>
           <div class="icon">
             <SVG size="48" dimmed>
@@ -417,46 +408,17 @@ const {
           <Heading level={3}>Operators</Heading>
           <Paragraph>You sit at the center of decisions that span multiple tools, channels, and teams. Mermind gives you a single point of operational truth — so every decision is based on what is actually happening, not what the last report happened to show.</Paragraph>
         </Card>
-        <Card>
-          <div class="icon">
-            <SVG size="48" dimmed>
-              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
-              <path d="M12 2v2" />
-              <path d="M5 12h14" />
-            </SVG>
-          </div>
-          <Heading level={3}>Merchants</Heading>
-          <Paragraph>You are responsible for the performance of client stores you cannot monitor around the clock. A silent failure at a client's store is your problem before it becomes theirs. Mermind surfaces issues early — before clients notice and before the damage compounds into a conversation you don't want to have.</Paragraph>
-        </Card>
       </Grid>
     </Section>
     <Section bg="stripes">
       <div slot="header" class="section--header">
         <div class="alt-title">Current Stage</div>
         <Heading level={2} size="xl">Mermind is in early development</Heading>
-        <Paragraph size="lg" dimmed>Mermind is in early development. We are building a narrow, reliable foundation before expanding into broader capabilities. This means fewer features, more accuracy, and a deliberate sequence that does not skip foundational steps.</Paragraph>
+        <Paragraph dimmed>Mermind is in early development. We are building a narrow, reliable foundation before expanding into broader capabilities. This means fewer features, more accuracy, and a deliberate sequence that does not skip foundational steps.</Paragraph>
       </div>
       <Grid columns={1} gap="2rem">
-        <Card>
-          <div class="icon">
-            <SVG size="48" dimmed>
-              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
-              <path d="M12 2v2" />
-              <path d="M5 12h14" />
-            </SVG>
-          </div>
-          <Heading level={3}>What We're Building</Heading>
-          <Paragraph>Our current focus is on preventing margin leaks — where automation is running without oversight and bleeding profit. We are also laying the groundwork for broader operational understanding that will surface across your entire stack.</Paragraph>
-        </Card>
-        <Card limed outlined>
-          <div class="icon">
-            <SVG size="48" dimmed>
-              <path d="M12 22s4-8 4-12A4 4 0 0 0 4 4s4 8 4 12" />
-              <path d="M12 2v2" />
-              <path d="M5 12h14" />
-            </SVG>
-          </div>
-          <Heading level={3}>Join the Waitlist</Heading>
+        <Card padding="lg" limed outlined>
+          <Heading level={3} size="lg">Join the Waitlist</Heading>
           <Paragraph>Join the waitlist to follow along and be among the first to experience Mermind.</Paragraph>
           <WaitListForm />
         </Card>

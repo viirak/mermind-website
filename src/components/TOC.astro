@@ -12,8 +12,6 @@ interface Props {
 
 const { headings, levels = 2 } = Astro.props as Props;
 
-console.log("headings", headings);
-
 // Filter headings to only show up to the specified level
 const filteredHeadings = headings.filter((heading) => heading.depth <= levels);
 ---

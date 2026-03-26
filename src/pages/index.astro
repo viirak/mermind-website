@@ -7,23 +7,28 @@ import Button from "../components/elements/Button.astro";
 import Card from "../components/elements/Card.astro";
 import Grid from "../components/elements/Grid.astro";
 import Heading from "../components/elements/Heading.astro";
+import Mark from "../components/elements/Mark.astro";
 import Paragraph from "../components/elements/Paragraph.astro";
 import SVG from "../components/elements/SVG.astro";
 import Section from "../components/elements/Section.astro";
 import ArrowRight from "../icons/ArrowRight.astro";
 
 const {
-	headerColor1 = "rgba(150, 40, 40, 0.1)",
-	headerColor2 = "rgba(220, 120, 120, 0.1)",
-	headerColor3 = "rgba(228, 228, 228, 0.1)",
-	headerLinearColor1 = "rgba(88, 88, 88, 0.1)",
-	headerLinearColor2 = "rgba(230, 230, 230, 0.1)",
+	headerColor1 = "#a1a7a56a",
+	headerColor2 = "#f0f7e56a",
+	headerColor3 = "#f0f7e56a",
+	headerLinearColor1 = "#60a7a533",
+	headerLinearColor2 = "transparent",
+	background = "linear-gradient(135deg, #60a0a0aa, #f1eeee11);",
 } = Astro.props || {};
 ---
 
 <Layout title="Mermind" description="The neutral operational intelligence layer for e-commerce">
-	<Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={headerLinearColor1} linearColor2={headerLinearColor2}>
-    <HeaderHero variant="centered" size="lg" altTitle="E-commerce Operation" title="Your operations are more complex than your tools are telling you.">
+	<Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={headerLinearColor1} linearColor2={headerLinearColor2} background={background}>
+    <HeaderHero variant="centered" size="lg" altTitle="E-commerce Operation">
+      <div slot="title" class="title">
+        Your <Mark>operations</Mark> are more complex than your tools are telling you.
+      </div>
       <slot slot="lead">
         Stop guessing. Start understanding, what is actually happening across your systems, identifies what is going wrong before damage occurs, and helps your team act on what actually matters.
       </slot>
@@ -52,7 +57,7 @@ const {
     </HeaderHero>
   </Header>
 	<main>
-    <Section bg="dotted">
+    <Section bg="dotted" border="y">
       <div slot="header" class="section--header">
         <div class="alt-title">Why Issues Go Unnoticed</div>
         <Heading level={2} size="2xl">Most operational failures happen quietly</Heading>

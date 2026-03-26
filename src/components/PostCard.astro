@@ -22,12 +22,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const imagePath = post.coverImage ? `/src/assets${post.coverImage}` : null;
-
-if (imagePath && !images[imagePath]) {
-	throw new Error(
-		`"${imagePath}" does not exist in glob: "src/assets/cover-images/**/*.{jpeg,jpg,png,gif,webp}"`,
-	);
-}
+const imageSrc = imagePath && images[imagePath] ? images[imagePath]() : null;
 
 const formattedDate = post.pubDate
 	? new Date(post.pubDate).toLocaleDateString("en-US", {
@@ -42,9 +37,9 @@ const formattedDate = post.pubDate
   <a href={`/blog/${postId}`} class="card-wrapper">
     <div class="card-image">
       <div class="responsive">
-        {post.coverImage && imagePath && images[imagePath] && (
+        {post.coverImage && imageSrc && (
           <Image 
-            src={images[imagePath]()} 
+            src={imageSrc} 
             alt={post.title} 
             width={300} 
             height={169} 

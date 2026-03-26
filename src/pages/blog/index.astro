@@ -107,7 +107,7 @@ stroke-linejoin="round"
       </div>
       {latestPosts.length > 0 && (
         <Grid>
-          {latestPosts.map((post) => (
+          {latestPosts.map(post => (
             <PostCard postId={post.id} post={post.data} />
           ))}
         </Grid>

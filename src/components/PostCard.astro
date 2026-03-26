@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	"/src/assets/cover-images/**/*.{jpeg,jpg,png,gif,webp}",
+	"/src/assets/images/covers/**/*.{jpeg,jpg,png,gif,webp}",
 );
 
 const imagePath = post.coverImage ? `/src/assets${post.coverImage}` : null;

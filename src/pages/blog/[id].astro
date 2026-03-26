@@ -81,11 +81,17 @@ const maxWidth = "62rem";
       <div class="main--layout">
         <main>
           <div class="prose markdown-content">
+            {post.data.coverImage && (
+              <div class="cover-image">
+                <img src={post.data.coverImage} alt={post.data.title} />
+              </div>
+            )}
+            <h2 id="intro" class="intro hidden">Intro</h2>
             <Content />
           </div>
         </main>
         <aside>
-          <TOC headings={headings} />
+          <TOC headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]} />
         </aside>
       </div>
     </Container>
@@ -93,6 +99,12 @@ const maxWidth = "62rem";
 </Layout>
 
 <style is:global define:vars={{ maxWidth }}>
+  .markdown-content h2#intro {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+  }
+
   .header-wrapper {
     max-width: var(--maxWidth);
     margin: 0 auto;

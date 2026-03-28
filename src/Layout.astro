@@ -1,4 +1,5 @@
 ---
+import { env } from "cloudflare:workers";
 import Footer from "./components/Footer.astro";
 
 const {
@@ -7,6 +8,9 @@ const {
 	canonicalUrl = "https://mermind.ai",
 	ogImage = "https://mermind.ai/og-image.png",
 } = Astro.props;
+
+const isLocal = import.meta.env.DEV || import.meta.env.MODE === "local";
+const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
 ---
 
 <!doctype html>
@@ -56,18 +60,19 @@ const {
         }
       })();
     </script>
-    <script
-      type="text/partytown"
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-5FSC18TJ2R"
-    ></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-5FSC18TJ2R');
-    </script>
+    {!isLocal && googleAnalyticsId && (
+      <script
+        type="text/partytown"
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+      ></script>
+      <script type="text/partytown" define:vars={{ googleAnalyticsId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', {googleAnalyticsId});
+      </script>
+    )}
   </head>
   <body>
     <slot />

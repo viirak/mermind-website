@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "astro": "latest",
+    "partytown": "^0.0.0",
     "sequenzy": "^0.10.4"
   },
   "devDependencies": {

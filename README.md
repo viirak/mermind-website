@@ -1,43 +1,84 @@
 # Mermind Website
 
-This is the website for Mermind, a conversational AI assistant that helps you with your daily tasks. It is built with Astro and deployed on Cloudflare Pages.
+This is the website for Mermind, a neutral operational intelligence layer for e-commerce. It is built with Astro and deployed on Cloudflare Pages.
 
 ## 🚀 Project Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   └── mermind-icon.svg      # Favicon
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── actions/              # Astro server actions
+│   │   ├── submitContact.ts  # Contact form handler
+│   │   └── submitWaitList.ts # Waitlist form handler
+│   ├── assets/               # Static assets
+│   │   └── images/
+│   │       └── covers/        # Blog post cover images
+│   ├── blog-posts/           # Markdown blog content
+│   ├── components/           # Reusable Astro components
+│   │   ├── elements/         # Small, atomic UI components
+│   │   │   ├── Button.astro
+│   │   │   ├── Card.astro
+│   │   │   ├── FormField.astro
+│   │   │   ├── Grid.astro
+│   │   │   ├── Heading.astro
+│   │   │   ├── Paragraph.astro
+│   │   │   ├── Section.astro
+│   │   │   └── ...
+│   │   ├── Container.astro   # Max-width wrapper
+│   │   ├── Header.astro      # Site header
+│   │   ├── HeaderHero.astro  # Hero section
+│   │   ├── Footer.astro      # Site footer
+│   │   └── ...
+│   ├── content.config.ts     # Content collection configuration
+│   └── env.d.ts              # TypeScript declarations
+├── astro.config.mjs          # Astro configuration
+├── bun.lockb                 # Bun lockfile
+├── package.json              # Project dependencies
+├── tsconfig.json             # TypeScript configuration
+├── wrangler.jsonc            # Cloudflare Pages configuration
+└── .gitignore
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+bun run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deployment
 
-## 🧞 Commands
+```bash
+bun run deploy
+```
 
-All commands are run from the root of the project, from a terminal:
+## Integrations
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun run dev`             | Starts local dev server at `localhost:4321`      |
-| `bun run build`           | Build your production site to `./dist/`          |
-| `bun run preview`         | Preview your build locally, before deploying     |
-| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun run astro -- --help` | Get help using the Astro CLI                     |
-| `bun run deploy`          | Deploy your production site to Cloudflare Pages |
+### Sequenzy
 
-## 📝 Notes
+We use Sequenzy for email notifications and waitlist management. The API key and waitlist ID are stored in Cloudflare Workers as secrets and accessed via `env.SEQUENZY_API_KEY` and `env.SEQUENZY_WAITLIST_ID` respectively.
 
-- The website is currently in development.
+More at: [https://docs.sequenzy.com/introduction](https://docs.sequenzy.com/introduction)
+
+## Blog
+
+To add a new blog post, create a new markdown file in `src/blog-posts/` and add the frontmatter to the top of the file. The frontmatter should include the following keys:
+
+```markdown
+---
+title: "Post Title"
+altTitle: "Alternative Title"
+description: "Post description"
+pubDate: "2025-01-15"
+coverImage: "/images/covers/file.jpg"
+category: "logistics"
+draft: false
+isFeatured: false
+---
+```
+
+The `coverImage` should be a path to an image in `src/assets/images/covers/`. The `category` should be one of the following: `logistics`, `observability`, or `product`.
+
+The `draft` key should be set to `true` if the post is a draft and should not be published. The `isFeatured` key should be set to `true` if the post should be featured on the blog index page.
+

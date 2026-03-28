@@ -1,11 +1,24 @@
 ---
+import { actions } from "astro:actions";
 import Button from "./elements/Button.astro";
 import FormField from "./elements/FormField.astro";
 ---
 
-<div class="waitlist-form">
-  <div class="form-group">
-    <FormField
+<form method="POST" action={actions.submitWaitList}>
+  <!-- Honeypot: hidden from humans, bots will fill it -->
+  <div class="hp-field" aria-hidden="true">
+    <label for="website">Website</label>
+    <input
+      type="text"
+      id="website"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+    >
+  </div>
+  <div class="waitlist-form">
+    <div class="form-group">
+      <FormField
         id="email"
         label="Your Email"
         name="email"
@@ -13,14 +26,61 @@ import FormField from "./elements/FormField.astro";
         placeholder="Your email"
         maxlength={100}
         required
-        transition:persist
       />
-    <Button label="Join the waitlist" variant="primary" size="lg" />
+      <Button type="submit" label="Join the waitlist" variant="primary" size="lg" />
+    </div>
+    <div class="disclaimer">No spam. Just updates as we make progress.</div>
   </div>
-  <div class="disclaimer">No spam. Just updates as we make progress.</div>
-</div>
+</form>
+
+<div id="waitlist-alert" class="alert"></div>
+
+<script>
+  import { actions, isInputError } from "astro:actions";
+  const form = document.querySelector("form[action*='submitWaitList']") as HTMLFormElement;
+  const submitBtn = form?.querySelector("button[type='submit']") as HTMLButtonElement;
+  const alert = document.getElementById("waitlist-alert") as HTMLDivElement;
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.classList.add("loading");
+      const formData = new FormData(form);
+      formData.delete("website"); // remove honeypot field
+      try {
+        const { error } = await actions.submitWaitList(formData);
+        if (isInputError(error)) {
+          alert.classList.add("error");
+          const listElement = document.createElement("ul");
+          for (const key of Object.keys(error.fields) as Array<keyof typeof error.fields>) {
+            const message = error.fields[key];
+            const listItem = document.createElement("li");
+            listItem.textContent = message ? message.join(", ") : null;
+            listElement.appendChild(listItem);
+          }
+          alert.replaceChildren(listElement);
+        } else {
+          form.remove();
+          alert.classList.remove("error");
+          alert.classList.add("success");
+          alert.innerHTML = `<h3>You're on the list!</h3><p>We'll be in touch soon.</p>`;
+        }
+      } catch (e) {
+        alert.classList.add("error");
+        alert.innerHTML = "<h3>Oops! Something went wrong.</h3><p>Please try again later.</p>";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("loading");
+      }
+    });
+  }
+</script>
 
 <style>
+  .waitlist-form {
+    text-align: left;
+  }
+
   .form-group {
     display: flex;
     flex-direction: column;
@@ -35,5 +95,33 @@ import FormField from "./elements/FormField.astro";
     font-size: 0.875rem;
     color: var(--color-text-dimmed);
     margin-top: 0.5rem;
+  }
+
+  .alert {
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-background-highlight);
+  }
+
+  .alert:empty {
+    display: none;
+  }
+
+  .alert.success {
+    color: var(--color-text);
+  }
+
+  .alert.error {
+    color: var(--color-danger);
+  }
+
+  :global(.alert h3),
+  :global(.alert p) {
+    margin: 0;
+  }
+  
+  .hp-field {
+    display: none;
   }
 </style>

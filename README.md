@@ -61,6 +61,16 @@ We use Sequenzy for email notifications and waitlist management. The API key and
 
 More at: [https://docs.sequenzy.com/introduction](https://docs.sequenzy.com/introduction)
 
+## Google Analytics
+
+We use Google Analytics for tracking website traffic. The tracking ID is stored in Cloudflare Workers as secrets and accessed via `env.GOOGLE_ANALYTICS_ID`.
+
+More at: [https://developers.google.com/analytics/devguides/collection/gtagjs](https://developers.google.com/analytics/devguides/collection/gtagjs)
+
+## Cloudflare Pages
+
+We use Cloudflare Pages for hosting and deployment. The configuration is in `wrangler.jsonc`.
+
 ## Blog
 
 To add a new blog post, create a new markdown file in `src/blog-posts/` and add the frontmatter to the top of the file. The frontmatter should include the following keys:

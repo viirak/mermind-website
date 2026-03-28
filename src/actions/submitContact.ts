@@ -1,5 +1,7 @@
 import { defineAction } from "astro:actions";
+import { env } from "cloudflare:workers";
 import { z } from "astro/zod";
+import Sequenzy from "sequenzy";
 
 const submitContact = defineAction({
 	accept: "form",
@@ -26,15 +28,23 @@ const submitContact = defineAction({
 			.max(1000, "Message must be less than 1000 characters"),
 		website: z.string().optional(),
 	}),
-	handler: async (input, context) => {
-		console.log("Contact form submitted:", input);
-		// Honeypot check: if the hidden field is filled, it's a bot
-		if (input.website) {
-			return { success: true }; // Return success silently
-		}
-		// TODO: send email
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-		return { success: true };
+	handler: async (input) => {
+		if (input.website) return { success: true }; // honeypot
+		const apiKey = env.SEQUENZY_API_KEY;
+		if (!apiKey) return { success: false };
+		const client = new Sequenzy({ apiKey });
+		await client.transactional
+			.send({
+				to: "contact@mermind.ai",
+				subject: "New message from contact form",
+				body: `<h1>New message from contact form</h1><p>Name: ${input.name}</p><p>Email: ${input.email}</p><p>Company: ${input.company}</p><p>Subject: ${input.subject}</p><p>Message: ${input.message}</p>`,
+			})
+			.then(() => {
+				return { success: true };
+			})
+			.catch(() => {
+				return { success: false };
+			});
 	},
 });
 

@@ -4,19 +4,28 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../Layout.astro";
 import Container from "../../components/Container.astro";
 import Header from "../../components/Header.astro";
+import PostCard from "../../components/PostCard.astro";
 import TOC from "../../components/TOC.astro";
 import Breadcrumb from "../../components/elements/Breadcrumb.astro";
+import Grid from "../../components/elements/Grid.astro";
+import Heading from "../../components/elements/Heading.astro";
 import SVG from "../../components/elements/SVG.astro";
+import ArrowRight from "../../icons/ArrowRight.astro";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("blog");
-	return posts.map((post) => ({
-		params: { id: post.id },
-		props: { post },
-	}));
+	return posts.map((post) => {
+		// TODO: get related posts
+		const category = post.data.category;
+		const relatedPosts = posts.filter((p) => p.data.category === category);
+		return {
+			params: { id: post.id },
+			props: { post, relatedPosts },
+		};
+	});
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 const { Content, headings } = await render(post);
 
 const formattedDate = new Date(post.data.pubDate).toLocaleDateString("en-US", {
@@ -49,8 +58,8 @@ const maxWidth = "62rem";
 		linearColor1={linearColor1}
 		background={background}
 	>
-      <div class="header-wrapper">
-        <div class="header-nav">
+      <div class="header--wrapper">
+        <div class="header--nav">
           <Breadcrumb>
             <li>
               <a href="/blog" title="Blog">
@@ -70,7 +79,7 @@ const maxWidth = "62rem";
           </Breadcrumb>
           <a href="#" title="Back" onclick="window.history.back()">Back</a>
         </div>
-        <div class="header-content">
+        <div class="header--content">
           <div class="alt-title-wrapper">
             {post.data.altTitle && <span class="alt-title">{post.data.altTitle}</span>}
             {post.data.isFeatured && <span class="featured">Featured</span>}
@@ -111,6 +120,19 @@ const maxWidth = "62rem";
           <TOC headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]} />
         </aside>
       </div>
+      {relatedPosts.length > 0 && (
+        <section class="related-posts">
+          <div class="related-posts--header">
+            <Heading level={2} size="xl" weight="normal">Related Posts</Heading>
+            <a class="view-all-link" href={`/blog/categories/${post.data.category}`}>View All <ArrowRight /></a>
+          </div>
+          <Grid columns={3}>
+            {relatedPosts.map((post) => (
+              <PostCard postId={post.id} post={post.data} />
+            ))}
+          </Grid>
+        </section>
+      )}
     </Container>
   </article>
 </Layout>
@@ -122,18 +144,18 @@ const maxWidth = "62rem";
     margin: 0;
   }
 
-  .header-wrapper {
+  .header--wrapper {
     max-width: var(--maxWidth);
     margin: 0 auto;
   }
 
-  .header-nav {
+  .header--nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .header-nav--right {
+  .header--nav--right {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -142,12 +164,12 @@ const maxWidth = "62rem";
     }
   }
 
-  .header-nav--right .divider {
+  .header--nav--right .divider {
     display: inline-block;
     opacity: 0.2;
   }
 
-  .header-content {
+  .header--content {
     margin-top: 2rem;
     @media only screen and (min-width: 1041px) {
       margin-top: 3rem;
@@ -318,5 +340,23 @@ const maxWidth = "62rem";
     border-radius: 8px;
     margin: 1.5rem 0;
     border: 1px solid var(--color-border);
+  }
+
+  .related-posts {
+    max-width: var(--maxWidth);
+    margin: 3rem auto 0 auto; 
+  }
+
+  .related-posts--header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .related-posts--header .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 </style>

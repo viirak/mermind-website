@@ -35,13 +35,14 @@ const {
       <slot slot="cta">
         <div class="text--cta">
           <Button
+            id="join-waitlist-btn"
             label="Join the waitlist"
             variant="primary"
             size="lg"
-            href="/#waitlist-section"
           >
           </Button>
           <Button
+            id="learn-more-btn"
             label="Learn more"
             variant="outlined"
             size="lg"
@@ -432,3 +433,17 @@ const {
     </Section>
   </main>
 </Layout>
+
+<script>
+  const joinWaitlistBtn = document.getElementById("join-waitlist-btn");
+  const waitlistSection = document.getElementById("waitlist-section");
+  if (joinWaitlistBtn && waitlistSection) {
+    joinWaitlistBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: waitlistSection.offsetTop,
+        behavior: "smooth",
+      });
+    });
+  }
+</script>

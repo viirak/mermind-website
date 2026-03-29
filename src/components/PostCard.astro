@@ -41,8 +41,8 @@ const formattedDate = post.pubDate
           <Image 
             src={imageSrc} 
             alt={post.title} 
-            width={300} 
-            height={169} 
+            width={ isLarge ? 600 : 300} 
+            height={ isLarge ? 400 : 169} 
             format="webp" 
             sizes="(max-width: 600px) 100vw, 300px" 
           />

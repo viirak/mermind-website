@@ -4,8 +4,8 @@ import type { Page } from "astro";
 
 type Post = CollectionEntry<"blog">;
 interface Props {
-	page: Page<Post>;
-	basePath: string;
+  page: Page<Post>;
+  basePath: string;
 }
 
 const { page, basePath } = Astro.props as Props;

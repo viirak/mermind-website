@@ -1,21 +1,21 @@
 ---
 interface Props {
-	margin?: "none" | "sm" | "md" | "lg" | "xl";
-	size?: "sm" | "lg" | "xl";
-	dimmed?: boolean;
-	centered?: boolean;
-	fit?: boolean;
-	class?: string;
+  margin?: "none" | "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "lg" | "xl";
+  dimmed?: boolean;
+  centered?: boolean;
+  fit?: boolean;
+  class?: string;
 }
 
 const {
-	margin = "none",
-	size = "md",
-	dimmed = false,
-	centered = false,
-	fit = false,
-	class: className,
-	...rest
+  margin = "none",
+  size = "md",
+  dimmed = false,
+  centered = false,
+  fit = false,
+  class: className,
+  ...rest
 } = Astro.props;
 ---
 

@@ -1,31 +1,31 @@
 ---
 interface Props {
-	type?: "text" | "email" | "password" | "tel" | "url" | "textarea" | "select";
-	name: string;
-	label?: string;
-	placeholder?: string;
-	required?: boolean;
-	options?: { value: string; label: string }[];
-	class?: string;
-	rows?: number;
-	value?: string;
-	id?: string;
-	maxlength?: number;
+  type?: "text" | "email" | "password" | "tel" | "url" | "textarea" | "select";
+  name: string;
+  label?: string;
+  placeholder?: string;
+  required?: boolean;
+  options?: { value: string; label: string }[];
+  class?: string;
+  rows?: number;
+  value?: string;
+  id?: string;
+  maxlength?: number;
 }
 
 const {
-	type = "text",
-	name,
-	label,
-	placeholder,
-	required = false,
-	options = [],
-	class: className,
-	rows = 5,
-	value,
-	id = name,
-	maxlength,
-	...rest
+  type = "text",
+  name,
+  label,
+  placeholder,
+  required = false,
+  options = [],
+  class: className,
+  rows = 5,
+  value,
+  id = name,
+  maxlength,
+  ...rest
 } = Astro.props;
 ---
 

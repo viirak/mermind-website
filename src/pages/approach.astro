@@ -3,7 +3,6 @@ import Layout from "../Layout.astro";
 import Header from "../components/Header.astro";
 import HeaderHero from "../components/HeaderHero.astro";
 import WaitListForm from "../components/WaitListForm.astro";
-import Button from "../components/elements/Button.astro";
 import Card from "../components/elements/Card.astro";
 import Grid from "../components/elements/Grid.astro";
 import Heading from "../components/elements/Heading.astro";
@@ -12,18 +11,18 @@ import SVG from "../components/elements/SVG.astro";
 import Section from "../components/elements/Section.astro";
 
 const {
-	headerColor1 = "rgba(50, 40, 100, 0.2)",
-	headerColor2 = "rgba(50, 40, 100, 0.0)",
-	headerColor3 = "rgba(50, 40, 100, 0.1)",
-	linearColor1 = "rgba(50, 40, 100, 0.1)",
-	background = "linear-gradient(135deg, #00f7ff22, #00cfff22);",
+	headerColor1 = "#d5a7a522",
+	headerColor2 = "#f0f7e522",
+	headerColor3 = "#f0f7e522",
+	linearColor1 = "#60a0a022",
+	background = "linear-gradient(135deg, #60a0a022, #f1eeee11);",
 } = Astro.props || {};
 ---
 
 <Layout
   title="Mermind Approach"
   description="The Mermind approach to e-commerce operational intelligence"
-  canonicalUrl="https://mermind.ai/approach"
+  canonicalUrl={`${Astro.site}approach`}
 >
   <Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={linearColor1} background={background}>
     <HeaderHero

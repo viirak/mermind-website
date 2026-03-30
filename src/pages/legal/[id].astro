@@ -8,13 +8,13 @@ import Breadcrumb from "../../components/elements/Breadcrumb.astro";
 import "../../styles/markdown.css";
 
 export async function getStaticPaths() {
-	const posts = await getCollection("legal");
-	return posts.map((post) => {
-		return {
-			params: { id: post.id },
-			props: { post },
-		};
-	});
+  const posts = await getCollection("legal");
+  return posts.map((post) => {
+    return {
+      params: { id: post.id },
+      props: { post },
+    };
+  });
 }
 
 const { post } = Astro.props;
@@ -36,12 +36,12 @@ const maxWidth = "62rem";
 >
   <article>
     <Header
-		color1={headerColor1}
-		color2={headerColor2}
-		color3={headerColor3}
-		linearColor1={linearColor1}
-		background={background}
-	>
+      color1={headerColor1}
+      color2={headerColor2}
+      color3={headerColor3}
+      linearColor1={linearColor1}
+      background={background}
+    >
       <div class="header--wrapper">
         <div class="header--nav">
           <Breadcrumb>
@@ -61,7 +61,9 @@ const maxWidth = "62rem";
           </div>
         </main>
         <aside>
-          <TOC headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]} />
+          <TOC
+            headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]}
+          />
         </aside>
       </div>
     </Container>

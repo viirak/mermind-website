@@ -12,11 +12,11 @@ import Section from "../components/elements/Section.astro";
 import SendIcon from "../icons/SendIcon.astro";
 
 const {
-	headerColor1 = "rgba(50, 50, 100, 0.1)",
-	headerColor2 = "rgba(50, 40, 100, 0.0)",
-	headerColor3 = "rgba(50, 40, 100, 0.1)",
-	linearColor1 = "rgba(50, 40, 100, 0.1)",
-	background = "linear-gradient(135deg, #00f7ff22, #00cfff22);",
+  headerColor1 = "rgba(50, 50, 100, 0.1)",
+  headerColor2 = "rgba(50, 40, 100, 0.0)",
+  headerColor3 = "rgba(50, 40, 100, 0.1)",
+  linearColor1 = "rgba(50, 40, 100, 0.1)",
+  background = "linear-gradient(135deg, #00f7ff22, #00cfff22);",
 } = Astro.props || {};
 ---
 
@@ -25,7 +25,13 @@ const {
   description="Get in touch with the Mermind team. Questions, feedback, or collaboration inquiries welcome."
   canonicalUrl={`${Astro.site}contact`}
 >
-  <Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={linearColor1} background={background}>
+  <Header
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
     <HeaderHero
       paddingY="lg"
       altTitle="Contact Us"
@@ -57,98 +63,108 @@ const {
       </div>
     </HeaderHero>
   </Header>
-	<main>
+  <main>
     <Section>
       <div slot="header" class="section--header">
         <Heading level={2} size="xl">Send Us a Message</Heading>
         <Paragraph size="lg" dimmed>
-          If you have a question, feedback about a product, or a recurring situation that might deserve a structured solution, you can reach us here.
+          If you have a question, feedback about a product, or a recurring
+          situation that might deserve a structured solution, you can reach us
+          here.
         </Paragraph>
       </div>
-	<Card padding="lg" outlined>
-  <div class="form-context">
-    <Heading level={2}>Message</Heading>
-    <p>Please include as much detail as possible so we can understand your situation better.</p>
-  </div>
+      <Card padding="lg" outlined>
+        <div class="form-context">
+          <Heading level={2}>Message</Heading>
+          <p>
+            Please include as much detail as possible so we can understand your
+            situation better.
+          </p>
+        </div>
 
-  <form id="contact-form">
-    <!-- Honeypot: hidden from humans, bots will fill it -->
-    <div class="hp-field" aria-hidden="true">
-      <label for="website">Website</label>
-      <input
-        type="text"
-        id="website"
-        name="website"
-        tabindex="-1"
-        autocomplete="off"
-      >
-    </div>
-    <div class="group">
-      <FormField
-        id="name"
-        label="Your Name"
-        name="name"
-        placeholder="Your name"
-        maxlength={30}
-        required
-        transition:persist
-      />
-      <FormField
-        id="email"
-        label="Your Email"
-        name="email"
-        type="email"
-        placeholder="Your email"
-        maxlength={100}
-        required
-        transition:persist
-      />
-    </div>
-    <div class="group">
-      <FormField
-        label="Company (optional)"
-        name="company"
-        placeholder="Your company (if applicable)"
-        maxlength={100}
-        transition:persist
-      />
-      <FormField
-        label="What is this about?"
-        name="subject"
-        type="select"
-        options={[
+        <form id="contact-form">
+          <!-- Honeypot: hidden from humans, bots will fill it -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </div>
+          <div class="group">
+            <FormField
+              id="name"
+              label="Your Name"
+              name="name"
+              placeholder="Your name"
+              maxlength={30}
+              required
+              transition:persist
+            />
+            <FormField
+              id="email"
+              label="Your Email"
+              name="email"
+              type="email"
+              placeholder="Your email"
+              maxlength={100}
+              required
+              transition:persist
+            />
+          </div>
+          <div class="group">
+            <FormField
+              label="Company (optional)"
+              name="company"
+              placeholder="Your company (if applicable)"
+              maxlength={100}
+              transition:persist
+            />
+            <FormField
+              label="What is this about?"
+              name="subject"
+              type="select"
+              options={[
                   { value: "Product support", label: "Product support" },
                   { value: "Problem to share", label: "Problem to share" },
                   { value: "General inquiry", label: "General inquiry" },
                   { value: "Collaboration", label: "Collaboration" },
                   { value: "Other", label: "Other" }
                 ]}
-        required
-        transition:persist
-      />
-    </div>
-    <FormField
-      label="Message"
-      name="message"
-      type="textarea"
-      placeholder="How can we help?"
-      maxlength={500}
-      rows={5}
-      required
-      transition:persist
-    />
-    <div class="form--item actions">
-      <Button type="submit" variant="primary" label="Submit" id="submit-btn">
-        <slot slot="contentLeft">
-          <SendIcon />
-        </slot>
-      </Button>
-    </div>
-  </form>
-  <div id="alert" class="alert"></div>
-</Card>
-</Section>
-</main>
+              required
+              transition:persist
+            />
+          </div>
+          <FormField
+            label="Message"
+            name="message"
+            type="textarea"
+            placeholder="How can we help?"
+            maxlength={500}
+            rows={5}
+            required
+            transition:persist
+          />
+          <div class="form--item actions">
+            <Button
+              type="submit"
+              variant="primary"
+              label="Submit"
+              id="submit-btn"
+            >
+              <slot slot="contentLeft">
+                <SendIcon />
+              </slot>
+            </Button>
+          </div>
+        </form>
+        <div id="alert" class="alert"></div>
+      </Card>
+    </Section>
+  </main>
 </Layout>
 
 <script>

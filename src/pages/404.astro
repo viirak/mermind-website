@@ -20,18 +20,25 @@ import Section from "../components/elements/Section.astro";
         <Paragraph size="xl">404</Paragraph>
         <Heading level={1} size="xl">Page not found</Heading>
         <Paragraph>
-          The page you're looking for may have been removed, had its name changed, or is temporarily unavailable. If you think something is wrong, please <a href="/contact">let us know</a>.
+          The page you're looking for may have been removed, had its name
+          changed, or is temporarily unavailable. If you think something is
+          wrong, please <a href="/contact">let us know</a>.
         </Paragraph>
         <Paragraph>
           In the meantime, here are a few things you can do:
         </Paragraph>
         <div class="card--actions">
-          <Button href="/" variant="primary" label="Go to Homepage">
-          </Button>
-          <Button href="/blog" variant="outlined" label="Visit Our Blog">
-          </Button>
-          <Button href="/contact" variant="outlined" label="Contact Us">
-          </Button>
+          <Button href="/" variant="primary" label="Go to Homepage"></Button>
+          <Button
+            href="/blog"
+            variant="outlined"
+            label="Visit Our Blog"
+          ></Button>
+          <Button
+            href="/contact"
+            variant="outlined"
+            label="Contact Us"
+          ></Button>
         </div>
       </Card>
     </Section>
@@ -39,8 +46,8 @@ import Section from "../components/elements/Section.astro";
 </Layout>
 
 <style>
-main {
-  max-width: 48rem;
-  margin: 0 auto;
-}
+  main {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
 </style>

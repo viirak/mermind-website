@@ -3,7 +3,6 @@ import Layout from "../Layout.astro";
 import Header from "../components/Header.astro";
 import HeaderHero from "../components/HeaderHero.astro";
 import WaitListForm from "../components/WaitListForm.astro";
-import Button from "../components/elements/Button.astro";
 import Card from "../components/elements/Card.astro";
 import Grid from "../components/elements/Grid.astro";
 import Heading from "../components/elements/Heading.astro";
@@ -12,11 +11,11 @@ import SVG from "../components/elements/SVG.astro";
 import Section from "../components/elements/Section.astro";
 
 const {
-	headerColor1 = "rgba(150, 140, 150, 0.1)",
-	headerColor2 = "rgba(150, 40, 50, 0.0)",
-	headerColor3 = "rgba(150, 150, 150, 0.1)",
-	linearColor1 = "rgba(150, 40, 50, 0.1)",
-	background = "linear-gradient(135deg, #f0f7e522, #f0f0f522);",
+  headerColor1 = "rgba(150, 140, 150, 0.1)",
+  headerColor2 = "rgba(150, 40, 50, 0.0)",
+  headerColor3 = "rgba(150, 150, 150, 0.1)",
+  linearColor1 = "rgba(150, 40, 50, 0.1)",
+  background = "linear-gradient(135deg, #f0f7e522, #f0f0f522);",
 } = Astro.props || {};
 ---
 
@@ -25,7 +24,13 @@ const {
   description="Learn about Mermind's mission to build a neutral operational intelligence layer for e-commerce. Built by operators, for operators."
   canonicalUrl={`${Astro.site}about`}
 >
-  <Header color1={headerColor1} color2={headerColor2} color3={headerColor3} linearColor1={linearColor1} background={background}>
+  <Header
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
     <HeaderHero
       paddingY="lg"
       altTitle="Who We Are"
@@ -34,7 +39,7 @@ const {
       variant="default"
       size="default"
     >
-    <div slot="graphic">
+      <div slot="graphic">
         <SVG size="100%">
           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
           <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
@@ -44,53 +49,86 @@ const {
       </div>
     </HeaderHero>
   </Header>
-	<main>
+  <main>
     <Section>
       <div slot="header" class="section--header">
         <div class="alt-title">Where It Started</div>
-        <Heading level={2} size="xl">Built from the inside out by operators</Heading>
-        <Paragraph size="lg" dimmed>By operators. For operators. We needed a system that understands.</Paragraph>
+        <Heading level={2} size="xl">
+          Built from the inside out by operators
+        </Heading>
+        <Paragraph size="lg" dimmed>
+          By operators. For operators. We needed a system that understands.
+        </Paragraph>
       </div>
       <Grid columns={1} gap="2rem">
         <Card>
           <div>
-            <Paragraph>Mermind did not start with a market map or a whiteboard full of opportunity sizing.</Paragraph>
+            <Paragraph>
+              Mermind did not start with a market map or a whiteboard full of
+              opportunity sizing.
+            </Paragraph>
 
-            <p>It started with a specific, recurring frustration — the kind that builds quietly over years 
-            of running real e-commerce operations.</p>
+            <p>
+              It started with a specific, recurring frustration — the kind that
+              builds quietly over years of running real e-commerce operations.
+            </p>
 
-            <p>Products disappearing from listings without explanation. Tracking breaking silently for days 
-            before anyone noticed. Margins eroding in ways that no single report could fully account for. 
-            Integrations failing in the gaps between tools, where no one was watching.</p>
+            <p>
+              Products disappearing from listings without explanation. Tracking
+              breaking silently for days before anyone noticed. Margins eroding
+              in ways that no single report could fully account for.
+              Integrations failing in the gaps between tools, where no one was
+              watching.
+            </p>
 
-            <p>Every time, the discovery came too late. Every time, the cost was already paid.</p>
+            <p>
+              Every time, the discovery came too late. Every time, the cost was
+              already paid.
+            </p>
 
-            <p>The instinct was to find a tool that could help. Something that sat across the whole operation, 
-            understood what was happening, and surfaced problems before they compounded. Something that did 
-            not require a data team to operate, or a dashboard review to trigger.</p>
+            <p>
+              The instinct was to find a tool that could help. Something that
+              sat across the whole operation, understood what was happening, and
+              surfaced problems before they compounded. Something that did not
+              require a data team to operate, or a dashboard review to trigger.
+            </p>
 
             <p>That tool did not exist.</p>
 
-            <p>What existed were analytics platforms that reported on the past, monitoring tools that fired 
-            alerts when someone had already thought to define a threshold, and apps that each optimized 
-            their own narrow slice of the operation — none of them talking to each other, none of them 
-            seeing the full picture.</p>
+            <p>
+              What existed were analytics platforms that reported on the past,
+              monitoring tools that fired alerts when someone had already
+              thought to define a threshold, and apps that each optimized their
+              own narrow slice of the operation — none of them talking to each
+              other, none of them seeing the full picture.
+            </p>
 
-            <p>The gap was not in the data. There was plenty of data. The gap was in understanding — a 
-            system that could look across everything running an e-commerce operation and tell you, 
-            clearly and early, what was going wrong and why.</p>
+            <p>
+              The gap was not in the data. There was plenty of data. The gap was
+              in understanding — a system that could look across everything
+              running an e-commerce operation and tell you, clearly and early,
+              what was going wrong and why.
+            </p>
 
-            <p>Mermind is the answer to that gap. Not built by people who observed the problem from the 
-            outside — but by people who lived inside it, made the costly mistakes that come from not 
-            seeing things clearly enough, and decided to build the system that should have existed all 
-            along.</p>
+            <p>
+              Mermind is the answer to that gap. Not built by people who
+              observed the problem from the outside — but by people who lived
+              inside it, made the costly mistakes that come from not seeing
+              things clearly enough, and decided to build the system that should
+              have existed all along.
+            </p>
 
             <p>By operators. For operators.</p>
           </div>
         </Card>
         <Card>
           <Heading level={3} size="md">Mission</Heading>
-          <Paragraph margin="sm">To build a neutral operational intelligence layer that helps e-commerce teams understand what is happening in their operations, prevent what should not happen, and act with clarity at every stage of growth.</Paragraph>
+          <Paragraph margin="sm">
+            To build a neutral operational intelligence layer that helps
+            e-commerce teams understand what is happening in their operations,
+            prevent what should not happen, and act with clarity at every stage
+            of growth.
+          </Paragraph>
         </Card>
       </Grid>
     </Section>
@@ -98,7 +136,12 @@ const {
       <div slot="header" class="section--header">
         <div class="alt-title">How We Build</div>
         <Heading level={2} size="2xl">Our Values</Heading>
-        <Paragraph size="lg">We would rather do one thing correctly than many things approximately. A system that is sometimes wrong about important things is not a better tool — it is noise that costs you decisions. We start narrow and expand only when the foundation is proven.</Paragraph>
+        <Paragraph size="lg">
+          We would rather do one thing correctly than many things approximately.
+          A system that is sometimes wrong about important things is not a
+          better tool — it is noise that costs you decisions. We start narrow
+          and expand only when the foundation is proven.
+        </Paragraph>
       </div>
       <Grid columns={2} gap="2rem">
         <Card>
@@ -110,7 +153,12 @@ const {
             </SVG>
           </div>
           <Heading level={3}>Accuracy Over Breadth</Heading>
-          <Paragraph>We would rather do one thing correctly than many things approximately. A system that is sometimes wrong about important things is not a better tool — it is noise that costs you decisions. We start narrow and expand only when the foundation is proven.</Paragraph>
+          <Paragraph>
+            We would rather do one thing correctly than many things
+            approximately. A system that is sometimes wrong about important
+            things is not a better tool — it is noise that costs you decisions.
+            We start narrow and expand only when the foundation is proven.
+          </Paragraph>
         </Card>
         <Card>
           <div class="icon">
@@ -121,16 +169,28 @@ const {
             </SVG>
           </div>
           <Heading level={3}>Explanation Before Action</Heading>
-          <Paragraph>Mermind will not surface a recommendation it cannot explain. Every insight has a traceable reason. Every alert has a clear cause. This is not a feature — it is the architectural principle that makes the intelligence trustworthy.</Paragraph>
+          <Paragraph>
+            Mermind will not surface a recommendation it cannot explain. Every
+            insight has a traceable reason. Every alert has a clear cause. This
+            is not a feature — it is the architectural principle that makes the
+            intelligence trustworthy.
+          </Paragraph>
         </Card>
         <Card>
           <div class="icon">
             <SVG size="48" dimmed>
-              <path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"></path>
+              <path
+                d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"
+              ></path>
             </SVG>
           </div>
           <Heading level={3}>Earn Trust, Don't Assume It</Heading>
-          <Paragraph>Trust in a system is built through demonstrated accuracy over time, not through a promise at onboarding. Mermind starts with a narrow scope, proves its judgment on real operational problems, and earns a broader role only as that trust compounds.</Paragraph>
+          <Paragraph>
+            Trust in a system is built through demonstrated accuracy over time,
+            not through a promise at onboarding. Mermind starts with a narrow
+            scope, proves its judgment on real operational problems, and earns a
+            broader role only as that trust compounds.
+          </Paragraph>
         </Card>
         <Card>
           <div class="icon">
@@ -142,7 +202,12 @@ const {
             </SVG>
           </div>
           <Heading level={3}>Reliability as a Foundation</Heading>
-          <Paragraph>Intelligence that operators cannot depend on consistently is not intelligence — it is a liability. We treat reliability as the non-negotiable foundation everything else is built on, not a future milestone.</Paragraph>
+          <Paragraph>
+            Intelligence that operators cannot depend on consistently is not
+            intelligence — it is a liability. We treat reliability as the
+            non-negotiable foundation everything else is built on, not a future
+            milestone.
+          </Paragraph>
         </Card>
       </Grid>
     </Section>
@@ -150,19 +215,28 @@ const {
       <div slot="header" class="section--header">
         <div class="alt-title">Where We Are</div>
         <Heading level={2} size="2xl">Current Status</Heading>
-        <Paragraph size="lg">Mermind is in early development. We are building a narrow, reliable foundation before expanding into broader capabilities. This means fewer features, more accuracy, and a deliberate sequence that does not skip foundational steps.</Paragraph>
+        <Paragraph size="lg">
+          Mermind is in early development. We are building a narrow, reliable
+          foundation before expanding into broader capabilities. This means
+          fewer features, more accuracy, and a deliberate sequence that does not
+          skip foundational steps.
+        </Paragraph>
       </div>
     </Section>
     <Section>
       <div slot="header" class="section--header">
         <div class="alt-title">Get Early Access</div>
         <Heading level={2} size="2xl">Be part of the journey</Heading>
-        <Paragraph size="lg">Mermind is evolving step by step. Join the waitlist to stay informed and gain early access.</Paragraph>
+        <Paragraph size="lg">
+          Mermind is evolving step by step. Join the waitlist to stay informed
+          and gain early access.
+        </Paragraph>
       </div>
       <Card padding="lg" outlined>
         <Heading level={3} size="lg">Join the Waitlist</Heading>
         <Paragraph>
-          Join the waitlist to follow along and be among the first to experience Mermind.
+          Join the waitlist to follow along and be among the first to experience
+          Mermind.
         </Paragraph>
         <WaitListForm />
       </Card>

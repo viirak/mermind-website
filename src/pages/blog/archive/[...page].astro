@@ -17,14 +17,14 @@ import Section from "../../../components/elements/Section.astro";
 type Data = CollectionEntry<"blog">;
 
 interface Props {
-	page: Page<Data>;
+  page: Page<Data>;
 }
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	const posts: Data[] = (
-		await getCollection("blog", ({ data }) => data.draft !== true)
-	).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-	return paginate(posts, { pageSize: 12 });
+  const posts: Data[] = (
+    await getCollection("blog", ({ data }) => data.draft !== true)
+  ).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+  return paginate(posts, { pageSize: 12 });
 }
 
 const headerColor1 = "rgba(100, 100, 50, 0.1)";
@@ -42,18 +42,19 @@ const { page }: Props = Astro.props as Props;
   canonicalUrl={`${Astro.site}blog/archive/${page.currentPage}`}
 >
   <Header
-	color1={headerColor1}
-	color2={headerColor2}
-	color3={headerColor3}
-	linearColor1={linearColor1}
-	background={background}
-	>
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
     <div class="header--content">
       <div class="header-nav">
         <Breadcrumb>
           <a href="/blog" title="Blog">
             <SVG size="20" dimmed>
-              <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
             </SVG>
             Blog
           </a>

@@ -44,7 +44,7 @@ const submitWaitList = defineAction({
 			})
 			.then(() => input)
 			.catch((e) => {
-				throw new Error(e.message);
+				throw new Error("Failed to process request. Please try again later.");
 			});
 	},
 });

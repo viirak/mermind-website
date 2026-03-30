@@ -1,0 +1,125 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import type { GetStaticPathsOptions } from "astro";
+import type { Page } from "astro";
+import Layout from "../../../../Layout.astro";
+import Empty from "../../../../components/Empty.astro";
+import Header from "../../../../components/Header.astro";
+import HeaderHero from "../../../../components/HeaderHero.astro";
+import PostCard from "../../../../components/PostCard.astro";
+import Breadcrumb from "../../../../components/elements/Breadcrumb.astro";
+import Grid from "../../../../components/elements/Grid.astro";
+import Pagination from "../../../../components/elements/Pagination.astro";
+import SVG from "../../../../components/elements/SVG.astro";
+import Section from "../../../../components/elements/Section.astro";
+
+type Post = CollectionEntry<"blog">;
+
+interface Props {
+  page: Page<Post>;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allPosts: Post[] = (
+    await getCollection("blog", ({ data }) => data.draft !== true)
+  ).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+  const categories = [
+    ...new Set(allPosts.map((post) => post.data.category).filter(Boolean)),
+  ];
+
+  return categories.flatMap((category) => {
+    const posts = allPosts.filter((post) => post.data.category === category);
+    return paginate(posts, {
+      pageSize: 30,
+      params: { category },
+    });
+  });
+}
+
+const { category } = Astro.params;
+const { page } = Astro.props as Props;
+
+// Helper to capitalize
+const titleCategory = category
+  ? category.charAt(0).toUpperCase() + category.slice(1)
+  : "";
+
+const headerColor1 = "rgba(100, 100, 50, 0.1)";
+const headerColor2 = "rgba(50, 150, 50, 0.0)";
+const headerColor3 = "rgba(150, 200, 150, 0.1)";
+const linearColor1 = "rgba(50, 150, 50, 0.1)";
+const background = "linear-gradient(135deg, #aaddcc22, #aaddcc22);";
+---
+
+<Layout
+  title={`${titleCategory} — Mermind`}
+  description={`Articles and notes about ${category} from Mermind.`}
+  canonicalUrl={`${Astro.site}blog/categories/${category}`}
+>
+  <Header
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
+    <div class="header--content">
+      <div class="header-nav">
+        <Breadcrumb>
+          <a href="/blog" title="Blog">
+            <SVG size="20" dimmed>
+              <path d="m12 19-7-7 7-7" />
+              <path d="M19 12H5" />
+            </SVG>
+            Blog
+          </a>
+          <li>Category</li>
+        </Breadcrumb>
+        <div>Page {page.currentPage} of {page.lastPage}</div>
+      </div>
+      <HeaderHero
+        title={titleCategory}
+        lead="Articles we've published in this category."
+      />
+    </div>
+  </Header>
+
+  <main class="main--content">
+    <Section>
+      {page.data.length === 0 && (
+        <Empty>
+          <p>No posts yet. Check back soon!</p>
+        </Empty>
+      )}
+      {page.data.length > 0 && (
+        <>
+          <Grid columns={3}>
+            {page.data.map((post) => (
+              <PostCard postId={post.id} post={post.data} />
+            ))}
+          </Grid>
+          {page.lastPage > 1 && (
+            <div class="section--footer">
+              <Pagination page={page} basePath={`/blog/categories/${category}`} />
+            </div>
+          )}
+        </>
+      )}
+    </Section>
+  </main>
+</Layout>
+
+<style>
+  .header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main--content,
+  .header--content {
+    max-width: 68rem;
+    margin: 0 auto;
+  }
+</style>

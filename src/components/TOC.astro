@@ -1,0 +1,141 @@
+---
+interface Heading {
+  depth: number; // The heading level (h1 = 1, h2 = 2, etc)
+  slug: string; // The ID of the heading for linking
+  text: string; // The text content of the heading
+}
+
+interface Props {
+  headings: Heading[]; // Array of headings from your markdown content
+  levels?: 1 | 2 | 3; // How many levels of headers to show in TOC (default: 2)
+}
+
+const { headings, levels = 2 } = Astro.props as Props;
+
+// Filter headings to only show up to the specified level
+const filteredHeadings = headings.filter((heading) => heading.depth <= levels);
+---
+
+<div class="toc">
+  <h4 class="toc-title">On this page</h4>
+  <ul class="toc-list">
+    {filteredHeadings.map((heading) => (
+      <li
+        class:list={{
+          "pl-3": heading.depth === 2,
+          "pl-6": heading.depth === 3,
+        }}
+      >
+        <a
+          href={`#${heading.slug}`}
+          class="toc-link"
+        >
+          {heading.text}
+        </a>
+      </li>
+      ))}
+  </ul>
+</div>
+
+<style>
+  .toc {
+    overflow: hidden;
+    position: sticky;
+    top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    color: var(--color-text);
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-link {
+    display: block;
+    padding: 0 1rem 0 1rem;
+    margin-top: 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    opacity: 0.5;
+  }
+
+  .toc-link:hover {
+    opacity: 1;
+    transition: color 0.2s ease;
+  }
+
+  .toc-link.current {
+    border-left: 2px solid var(--color-text);
+    opacity: 1;
+  }
+
+  .scroll-mt-24 {
+    scroll-margin-top: 24px;
+  }
+</style>
+
+<script>
+  // Wrapper for Blog post content
+  let wrappingElement: Element | null;
+  let observeHeaderTags: IntersectionObserver;
+  let allHeaderTags: NodeListOf<Element>;
+
+  // Function that runs when the Intersection Observer fires
+  function setCurrent(e: IntersectionObserverEntry[]) {
+    var allSectionLinks = document.querySelectorAll(".toc-link");
+    e.map((i) => {
+      if (i.isIntersecting === true) {
+        allSectionLinks.forEach((link) => link.classList.remove("current"));
+        const targetLink = document.querySelector(
+          `a[href="#${i.target.id}"].toc-link`
+        );
+
+        if (targetLink) targetLink.classList.add("current");
+      }
+    });
+  }
+
+  function initTOC() {
+    // update this with whatever class wraps your blog post content
+    wrappingElement = document.querySelector(".markdown-content");
+    if (wrappingElement !== null) {
+      // Get all H1/H2/H3 tags from the post
+      allHeaderTags = wrappingElement.querySelectorAll(
+        ":scope > h1, :scope > h2, :scope > h3"
+      );
+    }
+
+    // Intersection Observer Options
+    let options: IntersectionObserverInit = {
+      root: null,
+      rootMargin: "0px 0px -50% 0px",
+      threshold: [1],
+    };
+
+    // Each Intersection Observer runs setCurrent
+    observeHeaderTags = new IntersectionObserver(setCurrent, options);
+    if (wrappingElement === null) {
+      return;
+    }
+    for (const tag of allHeaderTags) {
+      tag.classList.add("scroll-mt-24");
+      observeHeaderTags.observe(tag);
+    }
+  }
+
+  // runs on initial page load
+  initTOC();
+
+  // runs on view transitions navigation
+  document.addEventListener("astro:after-swap", initTOC);
+</script>

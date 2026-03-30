@@ -8,18 +8,25 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"preview": "astro build && wrangler pages dev",
+		"preview": "astro build && wrangler pages dev ./dist",
 		"astro": "astro",
 		"generate-types": "wrangler types",
-		"deploy": "astro build && wrangler pages deploy",
-		"cf-typegen": "wrangler types"
+		"deploy": "astro build && wrangler pages deploy ./dist",
+		"cf-typegen": "wrangler types",
+		"lint": "biome lint --write .",
+		"lint:fix": "biome check --write ."
 	},
 	"dependencies": {
-		"astro": "^6.0.5"
+		"@astrojs/rss": "^4.0.18",
+		"astro": "latest",
+		"partytown": "^0.0.0",
+		"sequenzy": "^0.10.4"
 	},
 	"devDependencies": {
 		"@astrojs/cloudflare": "^13.1.2",
 		"@types/node": "^25.5.0",
-		"wrangler": "^4.74.0"
+		"wrangler": "^4.74.0",
+		"@biomejs/biome": "2.3.11",
+		"ultracite": "7.0.12"
 	}
 }

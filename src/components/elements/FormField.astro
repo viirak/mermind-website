@@ -1,0 +1,170 @@
+---
+interface Props {
+  type?: "text" | "email" | "password" | "tel" | "url" | "textarea" | "select";
+  name: string;
+  label?: string;
+  placeholder?: string;
+  required?: boolean;
+  options?: { value: string; label: string }[];
+  class?: string;
+  rows?: number;
+  value?: string;
+  id?: string;
+  maxlength?: number;
+}
+
+const {
+  type = "text",
+  name,
+  label,
+  placeholder,
+  required = false,
+  options = [],
+  class: className,
+  rows = 5,
+  value,
+  id = name,
+  maxlength,
+  ...rest
+} = Astro.props;
+---
+
+<div id={`field-${id}`} class:list={["form-field", className]}>
+  {label && (
+    <label for={id} class="label">
+      {label}
+      {required && <span class="required" aria-hidden="true">*</span>}
+    </label>
+  )}
+
+  <div class="control">
+    {type === "textarea" ? (
+      <textarea
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        rows={rows}
+        class="input textarea"
+        {...rest}
+      >{value}</textarea>
+    ) : type === "select" ? (
+      <div class="select-wrapper">
+        <select
+          id={id}
+          name={name}
+          required={required}
+          class="input select"
+          {...rest}
+        >
+          {placeholder && <option value="" disabled selected>{placeholder}</option>}
+          {options.map((opt) => (
+            <option value={opt.value} selected={value === opt.value}>
+              {opt.label}
+            </option>
+          ))}
+          <slot />
+        </select>
+        <div class="select-arrow">
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    ) : (
+      <input
+        type={type}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        value={value}
+        class="input"
+        maxlength={maxlength}
+        {...rest}
+      />
+    )}
+  </div>
+</div>
+
+<style>
+  .form-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .control {
+    position: relative;
+    display: contents;
+  }
+
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .required {
+    color: var(--color-danger);
+    margin-left: 0.25rem;
+  }
+
+  .input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border-darker);
+    border-radius: 0.5rem;
+    background-color: var(--color-background-glass);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light, rgba(85, 127, 28, 0.2));
+  }
+
+  .textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .select-wrapper {
+    position: relative;
+    display: grid;
+  }
+
+  .select {
+    appearance: none;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-text-dimmed);
+    display: flex;
+    align-items: center;
+  }
+
+  .text-error {
+    color: var(--color-danger);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  .text-error:empty {
+    display: none;
+  }
+</style>

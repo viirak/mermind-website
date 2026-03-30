@@ -1,0 +1,73 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../Layout.astro";
+import Container from "../../components/Container.astro";
+import Header from "../../components/Header.astro";
+import TOC from "../../components/TOC.astro";
+import Breadcrumb from "../../components/elements/Breadcrumb.astro";
+import "../../styles/markdown.css";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("legal");
+  return posts.map((post) => {
+    return {
+      params: { id: post.id },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const headerColor1 = "rgba(100, 100, 50, 0.1)";
+const headerColor2 = "rgba(50, 150, 50, 0.0)";
+const headerColor3 = "rgba(150, 200, 150, 0.1)";
+const linearColor1 = "rgba(50, 150, 50, 0.1)";
+const background = "linear-gradient(135deg, #aaddcc33, #aaddcc33)";
+
+const maxWidth = "62rem";
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalUrl={`${Astro.site}legal/${post.id}`}
+>
+  <article>
+    <Header
+      color1={headerColor1}
+      color2={headerColor2}
+      color3={headerColor3}
+      linearColor1={linearColor1}
+      background={background}
+    >
+      <div class="header--wrapper">
+        <div class="header--nav">
+          <Breadcrumb>
+            <li>Legal</li>
+            <li>{post.data.title}</li>
+          </Breadcrumb>
+        </div>
+        <h1 class="title">{post.data.title}</h1>
+      </div>
+    </Header>
+    <Container>
+      <div class="main--layout">
+        <main>
+          <div class="prose markdown-content">
+            <h2 id="intro" class="intro hidden">Intro</h2>
+            <Content />
+          </div>
+        </main>
+        <aside>
+          <TOC
+            headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]}
+          />
+        </aside>
+      </div>
+    </Container>
+  </article>
+</Layout>
+
+<style is:global define:vars={{ maxWidth }}></style>

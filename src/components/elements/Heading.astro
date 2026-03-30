@@ -1,0 +1,159 @@
+---
+interface Props {
+	level?: 1 | 2 | 3 | 4 | 5 | 6;
+	margin?: "none" | "sm" | "md" | "lg";
+	size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+	weight?: "light" | "normal" | "medium" | "bold";
+	class?: string;
+}
+
+const {
+	level,
+	margin = "none",
+	size,
+	weight = "bold",
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+{level === 1 && <h1 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h1>}
+{level === 2 && <h2 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h2>}
+{level === 3 && <h3 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h3>}
+{level === 4 && <h4 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h4>}
+{level === 5 && <h5 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h5>}
+{level === 6 && <h6 class:list={[`size-${size}`, `weight-${weight}`, `margin-${margin}`, className]} {...rest}><slot /></h6>}
+
+<style>
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  /* Weight Light */
+  h1.weight-light,
+  h2.weight-light,
+  h3.weight-light,
+  h4.weight-light,
+  h5.weight-light,
+  h6.weight-light {
+    font-weight: 300;
+  }
+
+  h1.weight-normal,
+  h2.weight-normal,
+  h3.weight-normal,
+  h4.weight-normal,
+  h5.weight-normal,
+  h6.weight-normal {
+    font-weight: 400;
+  }
+
+  h1.weight-medium,
+  h2.weight-medium,
+  h3.weight-medium,
+  h4.weight-medium,
+  h5.weight-medium,
+  h6.weight-medium {
+    font-weight: 600;
+  }
+
+  /* Size */
+  h1.size-sm,
+  h2.size-sm,
+  h3.size-sm,
+  h4.size-sm,
+  h5.size-sm,
+  h6.size-sm {
+    font-size: 1rem;
+  }
+
+  h1.size-md,
+  h2.size-md,
+  h3.size-md,
+  h4.size-md,
+  h5.size-md,
+  h6.size-md {
+    font-size: 1.1rem;
+  }
+
+  h1.size-lg,
+  h2.size-lg,
+  h3.size-lg,
+  h4.size-lg,
+  h5.size-lg,
+  h6.size-lg {
+    font-size: 1.5rem;
+  }
+
+  h1.size-xl,
+  h2.size-xl,
+  h3.size-xl,
+  h4.size-xl,
+  h5.size-xl,
+  h6.size-xl {
+    font-size: 2rem;
+    line-height: 2.8rem;
+  }
+
+  h1.size-2xl,
+  h2.size-2xl,
+  h3.size-2xl,
+  h4.size-2xl,
+  h5.size-2xl,
+  h6.size-2xl {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+  }
+
+  h1.size-3xl,
+  h2.size-3xl,
+  h3.size-3xl,
+  h4.size-3xl,
+  h5.size-3xl,
+  h6.size-3xl {
+    font-size: 3.5rem;
+    line-height: 4.5rem;
+  }
+
+  /* margin */
+  h1.margin-none,
+  h2.margin-none,
+  h3.margin-none,
+  h4.margin-none,
+  h5.margin-none,
+  h6.margin-none {
+    margin: 0;
+  }
+
+  h1.margin-sm,
+  h2.margin-sm,
+  h3.margin-sm,
+  h4.margin-sm,
+  h5.margin-sm,
+  h6.margin-sm {
+    margin: 1rem 0;
+  }
+
+  h1.margin-lg,
+  h2.margin-lg,
+  h3.margin-lg,
+  h4.margin-lg,
+  h5.margin-lg,
+  h6.margin-lg {
+    margin: 1.5rem 0;
+  }
+
+  h1.margin-xl,
+  h2.margin-xl,
+  h3.margin-xl,
+  h4.margin-xl,
+  h5.margin-xl,
+  h6.margin-xxl {
+    margin: 2rem 0;
+  }
+</style>

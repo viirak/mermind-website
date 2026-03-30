@@ -1,0 +1,70 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { Page } from "astro";
+
+type Post = CollectionEntry<"blog">;
+interface Props {
+  page: Page<Post>;
+  basePath: string;
+}
+
+const { page, basePath } = Astro.props as Props;
+const lastUrl = `${basePath}/${page.lastPage}`;
+---
+
+<nav class="pagination">
+  {page.url.prev && page.currentPage > 2 && <a href={basePath} class="page">First</a>}
+  {page.url.prev && page.currentPage > 2 && <a href={page.url.prev} class="page">Prev</a>}
+  {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
+      <>
+        {pageNum === 1 && pageNum !== page.currentPage && (
+          <a href={basePath} class="page">
+            {pageNum}
+          </a>
+        )}
+        {pageNum === 1 && pageNum === page.currentPage && (
+          <span class="page is_active">{pageNum}</span>
+        )}      
+        {pageNum > 1 && pageNum !== page.currentPage && (
+          <a
+            href={`${basePath}/${pageNum}`}
+            class:list={["page", pageNum === page.currentPage && "is_active"]}
+          >
+            {pageNum}
+          </a>
+        )}
+        {pageNum > 1 && pageNum === page.currentPage && (
+          <span class="page is_active">{pageNum}</span>
+        )}
+      </>
+    ))}
+  {page.url.next && page.currentPage < page.lastPage - 2  && <a href={page.url.next} class="page">Next</a>}
+  {lastUrl && page.currentPage < page.lastPage - 2 && lastUrl !== page.url.next && <a href={lastUrl} class="page">Last</a>}
+</nav>
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .page {
+    padding: 0.2rem 0.8rem;
+    border-radius: 0.3rem;
+    background: var(--color-surface);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .page:hover {
+    background: var(--color-surface-darker);
+    transition: background 0.2s ease;
+  }
+
+  .page.is_active {
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+</style>

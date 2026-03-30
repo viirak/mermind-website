@@ -1,0 +1,144 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../Layout.astro";
+import Empty from "../../components/Empty.astro";
+import Header from "../../components/Header.astro";
+import HeaderHero from "../../components/HeaderHero.astro";
+import PostCard from "../../components/PostCard.astro";
+import SubscribeForm from "../../components/SubscribeForm.astro";
+import Button from "../../components/elements/Button.astro";
+import Card from "../../components/elements/Card.astro";
+import Grid from "../../components/elements/Grid.astro";
+import Heading from "../../components/elements/Heading.astro";
+import Paragraph from "../../components/elements/Paragraph.astro";
+import SVG from "../../components/elements/SVG.astro";
+import Section from "../../components/elements/Section.astro";
+import ArrowRight from "../../icons/ArrowRight.astro";
+
+const posts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// get top 1 featured post
+const featuredPost = sortedPosts.find((post) => post.data.isFeatured);
+
+// get latest 6 posts
+const latestPosts = sortedPosts
+  .filter((post) => !post.data.isFeatured)
+  .slice(0, 6);
+
+const {
+  headerColor1 = "rgba(100, 100, 100, 0.1)",
+  headerColor2 = "rgba(50, 150, 50, 0.0)",
+  headerColor3 = "rgba(150, 200, 150, 0.1)",
+  linearColor1 = "rgba(50, 150, 50, 0.1)",
+  background = "linear-gradient(135deg, #aaddfc22, #eaedec22);",
+} = Astro.props || {};
+---
+
+<Layout
+  title="Writing — Mermind"
+  description="Notes and updates from Mermind on building software, product decisions, and lessons learned along the way."
+  canonicalUrl={`${Astro.site}blog`}
+>
+  <Header
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
+    <HeaderHero
+      altTitle="Blog"
+      title="Notes from the work."
+      lead="We write occasionally about things we're building, things we've learned, and decisions that shaped the work."
+      variant="default"
+    >
+      <div slot="graphic">
+        <SVG size="100%">
+          <path
+            d="M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z"
+          />
+          <path d="M16 8 2 22" />
+          <path d="M17.5 15H9" />
+        </SVG>
+      </div>
+    </HeaderHero>
+  </Header>
+
+  <main>
+    {featuredPost && (
+      <Section>
+        <div slot="header" class="section--header">
+          <Heading level={2} size="xl">Featured Post</Heading>
+          <Paragraph size="lg" dimmed>Here's a post that is imporant to us and we think you'll enjoy reading.
+          </Paragraph>
+        </div>
+        <PostCard postId={featuredPost.id} post={featuredPost.data} isLarge />
+      </Section>
+    )}
+
+    <Section>
+      <div slot="header" class="section--header">
+        <Heading level={2} size="xl">Recent Posts</Heading>
+        <Paragraph size="lg" dimmed>
+          Here's a selection of posts we have recently published.
+          {latestPosts.length > 0 && (
+            <span>More posts are in the <a href="/blog/archive">archive</a>.</span>
+          )}
+        </Paragraph>
+      </div>
+      {latestPosts.length > 0 && (
+        <Grid>
+          {latestPosts.map(post => (
+            <PostCard postId={post.id} post={post.data} />
+          ))}
+        </Grid>
+      )}
+      {latestPosts.length === 0 && (
+        <Empty>
+          <p>No posts yet. Check back soon!</p>
+        </Empty>
+      )}
+      {latestPosts.length > 0 && (
+        <div class="section--footer">
+          <Button href="/blog/archive" variant="link">
+            View All Posts
+            <slot name="contentRight" slot="contentRight">
+              <ArrowRight />
+            </slot>
+          </Button>
+        </div>
+      )}
+    </Section>
+
+    <Section bg="stripes">
+      <div slot="header" class="section--header">
+        <Heading level={2} size="xl">Stay up to date with our work</Heading>
+        <Paragraph size="lg" dimmed>
+          We write occasionally about things we're building, things we've
+          learned, and decisions that shaped the work. If you want to get it
+          into your inbox when we publish new posts, please leave your email
+          below.
+        </Paragraph>
+      </div>
+      <Card padding="lg" outlined>
+        <header class="card--header">
+          <Heading level={3} size="xl">Subscribe</Heading>
+          <Paragraph size="lg" margin="sm" dimmed>
+            Please enter your email address below to stay in the loop. No spam.
+            No nonesense. Just updates when it matters.
+          </Paragraph>
+        </header>
+        <div>
+          <SubscribeForm />
+        </div>
+      </Card>
+    </Section>
+  </main>
+</Layout>

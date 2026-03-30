@@ -1,0 +1,213 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../Layout.astro";
+import Container from "../../components/Container.astro";
+import Header from "../../components/Header.astro";
+import PostCard from "../../components/PostCard.astro";
+import TOC from "../../components/TOC.astro";
+import Breadcrumb from "../../components/elements/Breadcrumb.astro";
+import Grid from "../../components/elements/Grid.astro";
+import Heading from "../../components/elements/Heading.astro";
+import SVG from "../../components/elements/SVG.astro";
+import ArrowRight from "../../icons/ArrowRight.astro";
+import "../../styles/markdown.css";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+  return posts.map((post) => {
+    const category = post.data.category;
+    const relatedPosts = posts.filter(
+      (p) => p.data.category === category && p.id !== post.id
+    );
+    return {
+      params: { id: post.id },
+      props: { post, relatedPosts },
+    };
+  });
+}
+
+type BlogPost = CollectionEntry<"blog">;
+
+const { post, relatedPosts } = Astro.props as {
+  post: BlogPost;
+  relatedPosts: BlogPost[];
+};
+const { Content, headings } = await render(post);
+
+const formattedDate = new Date(post.data.pubDate).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const headerColor1 = "rgba(100, 100, 50, 0.1)";
+const headerColor2 = "rgba(50, 150, 50, 0.0)";
+const headerColor3 = "rgba(150, 200, 150, 0.1)";
+const linearColor1 = "rgba(50, 150, 50, 0.1)";
+const background = "linear-gradient(135deg, #aaddcc33, #aaddcc33);";
+
+const coverImageSrc = `/src/assets${post.data.coverImage}`;
+
+const maxWidth = "62rem";
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalUrl={`${Astro.site}blog/${post.id}`}
+>
+  <article>
+    <Header
+      color1={headerColor1}
+      color2={headerColor2}
+      color3={headerColor3}
+      linearColor1={linearColor1}
+      background={background}
+    >
+      <div class="header--wrapper">
+        <div class="header--nav">
+          <Breadcrumb>
+            <li><a href="/blog" title="Blog">
+              <SVG size="20" dimmed>
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+              </SVG>
+              Blog
+            </a></li>
+            <li>
+              <a
+                href={`/blog/categories/${post.data.category}`}
+                title="Category"
+                >{post.data.category}</a
+              >
+            </li>
+          </Breadcrumb>
+          <a href="#" title="Back" onclick="window.history.back()">Back</a>
+        </div>
+        <div class="header--content">
+          <div class="alt-title-wrapper">
+            {post.data.altTitle && <span class="alt-title">{post.data.altTitle}</span>}
+            {post.data.isFeatured && <span class="featured">Featured</span>}
+          </div>
+          <h1 class="title">{post.data.title}</h1>
+          <div class="meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {formattedDate}
+            </time>
+            <span>•</span>
+            {post.data.category && (
+                <span>In <a href={`/blog/categories/${post.data.category}`}>{post.data.category}</a></span>
+              )}
+          </div>
+        </div>
+      </div>
+    </Header>
+    <Container>
+      <div class="main--layout">
+        <main>
+          <div class="prose markdown-content">
+            {post.data.coverImage && (
+              <div class="cover-image">
+                <Image
+                  src={coverImageSrc}
+                  alt={post.data.title}
+                  width={600}
+                  height={400}
+                  format="webp"
+                />
+              </div>
+            )}
+            <h2 id="intro" class="intro hidden">Intro</h2>
+            <Content />
+          </div>
+        </main>
+        <aside>
+          <TOC
+            headings={[{ depth: 2, slug: "intro", text: "Intro" }, ...headings]}
+          />
+        </aside>
+      </div>
+      {relatedPosts.length > 0 && (
+        <section class="related-posts">
+          <div class="related-posts--header">
+            <Heading level={2} size="xl" weight="normal">Related Posts</Heading>
+            <a class="view-all-link" href={`/blog/categories/${post.data.category}`}>View All <ArrowRight /></a>
+          </div>
+          <Grid columns={3}>
+            {relatedPosts.map((post) => (
+              <PostCard postId={post.id} post={post.data} />
+            ))}
+          </Grid>
+        </section>
+      )}
+    </Container>
+  </article>
+</Layout>
+
+<style is:global define:vars={{ maxWidth }}>
+  .header--nav--right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media only screen and (min-width: 818px) {
+    .header--nav--right {
+      gap: 1rem;
+    }
+  }
+
+  .header--nav--right .divider {
+    display: inline-block;
+    opacity: 0.2;
+  }
+
+  .header--content {
+    margin-top: 2rem;
+  }
+
+  @media only screen and (min-width: 1041px) {
+    .header--content {
+      margin-top: 3rem;
+      max-width: 42rem;
+    }
+  }
+
+  .meta {
+    font-size: 0.875rem;
+    color: var(--color-text-dimmed);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .alt-title-wrapper {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .alt-title-wrapper .featured {
+    color: var(--color-background);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    background: var(--color-primary);
+  }
+
+  .alt-title {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  @media only screen and (min-width: 818px) {
+    .alt-title {
+      font-size: 1.1rem;
+    }
+  }
+</style>

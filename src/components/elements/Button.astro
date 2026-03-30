@@ -1,0 +1,183 @@
+---
+interface Props {
+	label?: string;
+	variant?: "primary" | "secondary" | "flat" | "outlined" | "link";
+	size?: "sm" | "md" | "lg";
+	href?: string;
+	title?: string;
+	class?: string;
+	type?: "button" | "submit" | "reset";
+	id?: string;
+	dimmed?: boolean;
+	loading?: boolean;
+}
+
+const {
+	label,
+	variant = "flat",
+	size = "md",
+	href,
+	title,
+	class: className,
+	type = "button",
+	id,
+	dimmed = false,
+	loading = false,
+	...rest
+} = Astro.props;
+---
+
+{href ? (
+  <a class:list={[`btn`, variant, size, className, dimmed && "dimmed", loading && "loading"]} href={href} title={title} id={id} {...rest}>
+    {loading && <div class="loading-spinner"></div>}
+    {!loading && <slot name="contentLeft" />}
+    {label && label}
+    {!label && <slot />}
+    {!loading && <slot name="contentRight" />}
+  </a>
+) : (
+  <button type={type} class:list={[`btn`, variant, size, className, dimmed && "dimmed", loading && "loading"]} title={title} class={className} id={id} {...rest}>
+    {loading && <div class="loading-spinner"></div>}
+    {!loading && <slot name="contentLeft" />}
+    {label && label}
+    {!label && <slot />}
+    {!loading && <slot name="contentRight" />}
+  </button>
+)}
+
+<style>
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color-text);
+    background: var(--color-surface);
+    text-wrap: nowrap;
+  }
+
+  button.btn {
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: var(--color-surface-darker);
+    transition: background 0.2s ease;
+  }
+
+  .btn.dimmed {
+    opacity: 0.5;
+  }
+
+  .btn.dimmed:hover {
+    background: var(--color-surface-darker);
+    transition: opacity 0.5s ease;
+    opacity: 1;
+  }
+
+  .btn.loading {
+    cursor: progress;
+    opacity: 0.5;
+    pointer-events: none;
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+  }
+
+  /* Sizes */
+  .btn.sm {
+    padding: 0.4rem 1.5rem;
+  }
+
+  .btn.md {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .btn.lg {
+    padding: 0.7rem 2rem;
+    @media only screen and (min-width: 641px) {
+      padding: 1rem 2.5rem;
+    }
+  }
+
+  /* Variants */
+
+  .btn.primary {
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .btn.primary:hover {
+    background: var(--color-primary-darker);
+  }
+
+  .btn.flat {
+    color: var(--color-text);
+  }
+
+  .btn.secondary {
+    background: var(--color-secondary);
+    color: var(--color-background);
+  }
+
+  .btn.outlined {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-text);
+  }
+
+  .btn.outlined:hover {
+    background: var(--color-surface-darker);
+    transition: background 0.2s ease;
+  }
+
+  .btn.link {
+    padding: 0;
+    background: none;
+    color: var(--color-primary-darker);
+  }
+
+  .btn.link:hover {
+    color: var(--color-primary);
+    transition: color 0.2s ease;
+  }
+
+  :global([data-theme="dark"] .btn.link) {
+    color: var(--color-primary);
+  }
+
+  :global([data-theme="dark"] .btn.link:hover) {
+    color: var(--color-primary-darker);
+  }
+
+  @media only screen and (min-width: 1041px) {
+    /* Sizes for desktop */
+    .btn.lg {
+      padding: 1rem 2rem;
+    }
+  }
+
+  .loading-spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-text);
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>

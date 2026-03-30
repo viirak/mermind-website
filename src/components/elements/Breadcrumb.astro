@@ -1,0 +1,42 @@
+---
+---
+<ul class="breadcrumb">
+  <slot />
+</ul>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+
+  :global(.breadcrumb li) {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  :global(.breadcrumb li:not(:first-child)::before) {
+    content: "/";
+    font: inherit;
+    position: relative;
+    margin: 0 0.5rem 0 0.8rem;
+    font-size: x-small;
+    opacity: 0.5;
+  }
+
+  :global(.breadcrumb li a) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  :global(.breadcrumb li a:hover) {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+</style>

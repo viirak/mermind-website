@@ -1,0 +1,224 @@
+---
+interface Props {
+  title?: string;
+  altTitle?: string;
+  lead?: string;
+  variant?: "default" | "centered" | "split";
+  paddingY?: "default" | "lg";
+  size?: "default" | "lg";
+  class?: string;
+}
+
+const {
+  title,
+  altTitle,
+  lead,
+  variant = "default",
+  paddingY = "default",
+  size = "default",
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class:list={["hero", `hero--${variant}`, `hero--${size}`, `padding-y-${paddingY}`, className]}
+  {...rest}
+>
+  <div class="content">
+    {variant !== "centered" && (
+      <div class="content--graphic mobile-only">
+        <slot name="graphic" />
+      </div>
+    )}
+    <div class="content--text">
+      <div class="text--heading">
+        {altTitle && <span class="alt-title">{altTitle}</span>}
+        {title && <h1 class="title">{title}</h1>}
+        <slot name="title" />
+        <div class="lead">
+          {lead && <p class="lead-text">{lead}</p>}
+          <slot name="lead" />
+        </div>
+      </div>
+      <slot name="cta" class="text--cta" />
+    </div>
+    {variant !== "centered" && (
+      <div class="content--graphic desktop-only">
+        <slot name="graphic" />
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  /* === Layout === */
+  .hero {
+    padding: 0;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero.padding-y-lg .content {
+    padding: 3rem 0;
+    @media only screen and (min-width: 818px) {
+      padding: 5rem 0;
+    }
+  }
+
+  /* Variant: Split (Default behavior kept for backward compatibility if needed, but explicit split is better) */
+  .hero--split .content,
+  .hero--default .content {
+    @media only screen and (min-width: 818px) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  /* Variant: Centered */
+  .hero--centered .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero--centered .content--text {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero--centered .text--cta,
+  :global(.hero--centered .text--cta) {
+    justify-content: center;
+  }
+
+  .content .content--text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .hero--split .content--text,
+  .hero--default .content--text {
+    text-align: center;
+    @media only screen and (min-width: 818px) {
+      max-width: 50%;
+      text-align: left;
+    }
+  }
+
+  .hero--split .text--cta,
+  .hero--default .text--cta {
+    justify-content: center;
+    @media only screen and (min-width: 818px) {
+      justify-content: flex-start;
+    }
+  }
+
+  .content--graphic {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content--graphic.mobile-only {
+    @media only screen and (min-width: 818px) {
+      display: none;
+    }
+  }
+
+  .content--graphic.desktop-only {
+    @media only screen and (max-width: 817px) {
+      display: none;
+    }
+  }
+
+  .hero--split .content--graphic,
+  .hero--default .content--graphic {
+    @media only screen and (min-width: 818px) {
+      max-width: 50%;
+    }
+  }
+
+  :global(.content--graphic img),
+  :global(.content--graphic svg) {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.3;
+  }
+
+  .content--text .text--cta,
+  :global(.content--text .text--cta) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    @media only screen and (min-width: 641px) {
+      flex-direction: row;
+    }
+  }
+
+  /* === Typography === */
+
+  .title,
+  :global(.hero .title) {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 700;
+
+    @media only screen and (min-width: 1041px) {
+      font-size: 3rem;
+      line-height: 3.6rem;
+    }
+  }
+
+  /* Size: Large */
+  .hero--lg .title,
+  :global(.hero--lg .title) {
+    font-size: 3rem;
+    line-height: 4rem;
+
+    @media only screen and (min-width: 641px) {
+      font-size: 3.5rem;
+      line-height: 4.5rem;
+    }
+
+    @media only screen and (min-width: 1041px) {
+      font-size: 4.2rem;
+      line-height: 5.2rem;
+    }
+  }
+
+  .alt-title {
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    @media only screen and (min-width: 1041px) {
+      font-size: 1.3rem;
+    }
+  }
+
+  .lead {
+    color: var(--color-text);
+    max-width: 65ch;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    opacity: 0.7;
+    @media only screen and (min-width: 1041px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .hero--centered .lead {
+    margin: 0 auto;
+  }
+</style>

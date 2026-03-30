@@ -1,0 +1,206 @@
+---
+import FacebookIcon from "../icons/FacebookIcon.astro";
+import GithubIcon from "../icons/GithubIcon.astro";
+import LinkedInIcon from "../icons/LinkedInIcon.astro";
+import XIcon from "../icons/XIcon.astro";
+import Container from "./Container.astro";
+import LogoText from "./LogoText.astro";
+---
+
+<footer class="footer">
+  <Container>
+    <div class="content">
+      <div class="branding">
+        <LogoText height={19} />
+      </div>
+      <div class="links">
+        <div class="group-nav">
+          <nav class="menu">
+            <a href="/" title="Go to Home">Home</a>
+            <a href="/approach" title="Learn about our Approach">Approach</a>
+            <a href="/about" title="Learn more About Us">About</a>
+            <a href="/contact" title="Contact Us">Contact</a>
+            <a href="/blog" title="Read our Blog">Blog</a>
+          </nav>
+        </div>
+        <nav class="socials">
+          <a
+            href="https://github.com/mermindai"
+            title="Mermind Github Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><GithubIcon size={32} /></a
+          >
+          <a
+            href="https://x.com/mermindai"
+            title="Mermind X Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><XIcon size={32} /></a
+          >
+          <a
+            href="https://linkedin.com/company/mermindai"
+            title="Mermind LinkedIn Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><LinkedInIcon size={32} /></a
+          >
+          <a
+            href="https://facebook.com/mermindai"
+            title="Mermind Facebook Page"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><FacebookIcon size={32} /></a
+          >
+        </nav>
+      </div>
+      <div class="legal">
+        <div>&copy; 2025 Mermind AI. All rights reserved.</div>
+        <div class="legal-links">
+          <a href="/legal/terms" title="Read our Terms of Service"
+            >Terms of Service</a
+          >
+          <a href="/legal/privacy" title="Read our Privacy Policy"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    padding: 3rem 0;
+  }
+
+  .branding {
+    overflow: hidden;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    color: var(--color-text-dimmed);
+  }
+
+  :global(.branding svg) {
+    width: 100%;
+    height: auto;
+    opacity: 0.2;
+  }
+
+  .links {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    padding: 2rem 0;
+    background: var(--color-background);
+    @media only screen and (min-width: 1041px) {
+      flex-direction: row;
+      padding: 1rem 0;
+    }
+  }
+
+  .links .group-nav {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .links .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  .links .menu a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem 0.8rem;
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0.55;
+  }
+
+  .links .menu a:hover {
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .links .socials {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+    @media only screen and (min-width: 1041px) {
+      margin-top: 0;
+    }
+  }
+
+  .links .socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    text-decoration: none;
+    opacity: 0.25;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .links .socials a:hover {
+    opacity: 1;
+  }
+
+  .legal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    gap: 1rem;
+    color: var(--color-text-dimmed);
+    @media only screen and (min-width: 1041px) {
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  .legal .legal-links {
+    font-size: smaller;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .legal .legal-links a {
+    color: var(--color-text-dimmed);
+    text-decoration: none;
+  }
+
+  .legal .legal-links a:hover {
+    color: var(--color-link);
+  }
+
+  .pyramid-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.5rem;
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    opacity: 0.55;
+  }
+
+  .pyramid-icon:hover {
+    opacity: 1;
+    background: var(--color-border);
+    transition: opacity 0.25s ease-in-out;
+  }
+</style>

@@ -3,34 +3,34 @@ import { Image } from "astro:assets";
 import type { InferEntrySchema } from "astro:content";
 
 interface Props {
-	postId: string;
-	post: InferEntrySchema<"blog">;
-	class?: string;
-	isLarge?: boolean;
+  postId: string;
+  post: InferEntrySchema<"blog">;
+  class?: string;
+  isLarge?: boolean;
 }
 
 const {
-	postId,
-	post,
-	isLarge = false,
-	class: className,
-	...rest
+  postId,
+  post,
+  isLarge = false,
+  class: className,
+  ...rest
 } = Astro.props;
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	"/src/assets/images/covers/**/*.{jpeg,jpg,png,gif,webp}",
+  "/src/assets/images/covers/**/*.{jpeg,jpg,png,gif,webp}"
 );
 
 const imagePath = post.coverImage ? `/src/assets${post.coverImage}` : null;
 const imageSrc = imagePath && images[imagePath] ? images[imagePath]() : null;
 
 const formattedDate = post.pubDate
-	? new Date(post.pubDate).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		})
-	: null;
+  ? new Date(post.pubDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
 ---
 
 <article class:list={["card", className, isLarge && "large"]} {...rest}>

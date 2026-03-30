@@ -344,7 +344,18 @@ const maxWidth = "62rem";
 
   .related-posts {
     max-width: var(--maxWidth);
-    margin: 3rem auto 0 auto; 
+    margin: 2rem auto;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-border);
+    @media only screen and (min-width: 818px) {
+      margin: 3rem auto;
+      padding-top: 3rem;
+    }
+
+    @media only screen and (min-width: 1041px) {
+      margin: 5rem auto;
+      padding-top: 5rem;
+    }
   }
 
   .related-posts--header {

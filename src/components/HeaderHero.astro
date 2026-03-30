@@ -1,23 +1,23 @@
 ---
 interface Props {
-	title?: string;
-	altTitle?: string;
-	lead?: string;
-	variant?: "default" | "centered" | "split";
-	paddingY?: "default" | "lg";
-	size?: "default" | "lg";
-	class?: string;
+  title?: string;
+  altTitle?: string;
+  lead?: string;
+  variant?: "default" | "centered" | "split";
+  paddingY?: "default" | "lg";
+  size?: "default" | "lg";
+  class?: string;
 }
 
 const {
-	title,
-	altTitle,
-	lead,
-	variant = "default",
-	paddingY = "default",
-	size = "default",
-	class: className,
-	...rest
+  title,
+  altTitle,
+  lead,
+  variant = "default",
+  paddingY = "default",
+  size = "default",
+  class: className,
+  ...rest
 } = Astro.props;
 ---
 

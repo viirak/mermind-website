@@ -11,24 +11,22 @@ const currentPath = Astro.url.pathname;
 <header class="hbar-area">
   <div class="hbar">
     <div class="padder">
-        <div class="logo">
-          <a href="/" title="Go to Home">
-            <Logo />
-          </a>
-        </div>
-        <nav class="menu">
-          <a class={currentPath === "/" ? "active" : ""} href="/">Home</a>
-          <a class={currentPath === "/approach" ? "active" : ""} href="/approach"
-            >Approach</a
-          >
-          <a class={currentPath === "/about" ? "active" : ""} href="/about"
-            >About</a
-          >
-          <a class={currentPath === "/contact" ? "active" : ""} href="/contact"
-            >Contact</a
-          >
-          <a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a>
-        </nav>
+      <div class="logo"><a href="/" title="Go to Home">
+        <Logo />
+      </a></div>
+      <nav class="menu">
+        <a class={currentPath === "/" ? "active" : ""} href="/">Home</a>
+        <a class={currentPath === "/approach" ? "active" : ""} href="/approach"
+          >Approach</a
+        >
+        <a class={currentPath === "/about" ? "active" : ""} href="/about"
+          >About</a
+        >
+        <a class={currentPath === "/contact" ? "active" : ""} href="/contact"
+          >Contact</a
+        >
+        <a class={currentPath === "/blog" ? "active" : ""} href="/blog">Blog</a>
+      </nav>
       <div class="ctrl">
         <Button
           label="Get in Touch"

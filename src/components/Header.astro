@@ -3,22 +3,22 @@ import Container from "./Container.astro";
 import Hbar from "./HeaderBar.astro";
 
 interface Props {
-	color1?: string;
-	color2?: string;
-	color3?: string;
-	linearColor1?: string;
-	linearColor2?: string;
-	background?: string;
+  color1?: string;
+  color2?: string;
+  color3?: string;
+  linearColor1?: string;
+  linearColor2?: string;
+  background?: string;
 }
 
 // default values
 const {
-	color1 = "rgba(185, 127, 28, 0.1)",
-	color2 = "rgba(169, 165, 55, 0.1)",
-	color3 = "rgba(183, 110, 49, 0.1)",
-	linearColor1 = color1,
-	linearColor2 = "transparent",
-	background = "transparent",
+  color1 = "rgba(185, 127, 28, 0.1)",
+  color2 = "rgba(169, 165, 55, 0.1)",
+  color3 = "rgba(183, 110, 49, 0.1)",
+  linearColor1 = color1,
+  linearColor2 = "transparent",
+  background = "transparent",
 } = Astro.props || {};
 ---
 
@@ -39,7 +39,9 @@ const {
   </Container>
 </header>
 
-<style define:vars={{ color1, color2, color3, linearColor1, linearColor2, background }}>
+<style
+  define:vars={{ color1, color2, color3, linearColor1, linearColor2, background }}
+>
   header {
     position: relative;
     padding-top: 9em;
@@ -83,7 +85,11 @@ const {
   }
 
   .bg .s1 {
-    background: linear-gradient(110deg, var(--linearColor1), var(--linearColor2));
+    background: linear-gradient(
+      110deg,
+      var(--linearColor1),
+      var(--linearColor2)
+    );
     transform: rotate(-30deg);
     position: absolute;
     bottom: -190px;
@@ -93,7 +99,11 @@ const {
   }
 
   .bg .s2 {
-    background: linear-gradient(-70deg, var(--linearColor1), var(--linearColor2));
+    background: linear-gradient(
+      -70deg,
+      var(--linearColor1),
+      var(--linearColor2)
+    );
     transform: rotate(-30deg);
     position: absolute;
     top: -150px;
@@ -103,7 +113,11 @@ const {
   }
 
   .bg .s3 {
-    background: linear-gradient(-70deg, var(--linearColor1), var(--linearColor2));
+    background: linear-gradient(
+      -70deg,
+      var(--linearColor1),
+      var(--linearColor2)
+    );
     transform: rotate(-30deg);
     position: absolute;
     top: -50px;

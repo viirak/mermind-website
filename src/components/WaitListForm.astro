@@ -54,7 +54,12 @@ import FormField from "./elements/FormField.astro";
       />
     </div>
     <div class="group">
-      <Button type="submit" label="Join the waitlist" variant="primary" size="lg" />
+      <Button
+        type="submit"
+        label="Join the waitlist"
+        variant="primary"
+        size="lg"
+      />
     </div>
     <div class="disclaimer">No spam. Just updates as we make progress.</div>
   </div>
@@ -64,8 +69,12 @@ import FormField from "./elements/FormField.astro";
 
 <script>
   import { actions, isInputError } from "astro:actions";
-  const form = document.querySelector("form[action*='submitWaitList']") as HTMLFormElement;
-  const submitBtn = form?.querySelector("button[type='submit']") as HTMLButtonElement;
+  const form = document.querySelector(
+    "form[action*='submitWaitList']"
+  ) as HTMLFormElement;
+  const submitBtn = form?.querySelector(
+    "button[type='submit']"
+  ) as HTMLButtonElement;
   const alert = document.getElementById("waitlist-alert") as HTMLDivElement;
   if (form) {
     form.addEventListener("submit", async (event) => {
@@ -74,14 +83,17 @@ import FormField from "./elements/FormField.astro";
       submitBtn.classList.add("loading");
       const formData = new FormData(form);
       formData.delete("website"); // remove honeypot field
-      const errorHTML = `<h3>Oops!</h3><p>Something went wrong. Please try again later.</p>`;
+      const errorHTML =
+        "<h3>Oops!</h3><p>Something went wrong. Please try again later.</p>";
       try {
         const { error } = await actions.submitWaitList(formData);
         if (error) {
           if (isInputError(error)) {
             alert.classList.add("error");
             const listElement = document.createElement("ul");
-            for (const key of Object.keys(error.fields) as Array<keyof typeof error.fields>) {
+            for (const key of Object.keys(error.fields) as Array<
+              keyof typeof error.fields
+            >) {
               const message = error.fields[key];
               const listItem = document.createElement("li");
               listItem.textContent = message ? message.join(", ") : null;
@@ -161,7 +173,7 @@ import FormField from "./elements/FormField.astro";
     margin: 0;
     padding-left: 1rem;
   }
-  
+
   .hp-field {
     display: none;
   }

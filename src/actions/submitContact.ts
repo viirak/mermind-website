@@ -3,6 +3,14 @@ import { env } from "cloudflare:workers";
 import { z } from "astro/zod";
 import Sequenzy from "sequenzy";
 
+function escapeHtml(str: string): string {
+	return str
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
+}
+
 const submitContact = defineAction({
 	accept: "form",
 	input: z.object({
@@ -33,18 +41,16 @@ const submitContact = defineAction({
 		const apiKey = env.SEQUENZY_API_KEY;
 		if (!apiKey) return { success: false };
 		const client = new Sequenzy({ apiKey });
-		await client.transactional
-			.send({
+		try {
+			await client.transactional.send({
 				to: "contact@mermind.ai",
 				subject: "New message from contact form",
-				body: `<h1>New message from contact form</h1><p>Name: ${input.name}</p><p>Email: ${input.email}</p><p>Company: ${input.company}</p><p>Subject: ${input.subject}</p><p>Message: ${input.message}</p>`,
-			})
-			.then(() => {
-				return { success: true };
-			})
-			.catch(() => {
-				return { success: false };
+				body: `<h1>New message from contact form</h1><p>Name: ${escapeHtml(input.name)}</p><p>Email: ${escapeHtml(input.email)}</p><p>Company: ${escapeHtml(input.company ?? "")}</p><p>Subject: ${escapeHtml(input.subject)}</p><p>Message: ${escapeHtml(input.message)}</p>`,
 			});
+			return { success: true };
+		} catch {
+			return { success: false };
+		}
 	},
 });
 

@@ -11,6 +11,34 @@ const {
 
 const isLocal = import.meta.env.DEV || import.meta.env.MODE === "local";
 const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
+
+const siteUrl = Astro.site?.toString() || "https://mermind.ai";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Mermind",
+      "url": siteUrl,
+      "logo": `${siteUrl}/mermind-icon.svg`,
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "name": "Mermind",
+      "url": siteUrl,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -22,6 +50,8 @@ const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
     <meta name="generator" content={Astro.generator}>
     <title>{title}</title>
     <meta name="description" content={description}>
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1a1a1a">
     <link rel="canonical" href={canonicalUrl}>
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
@@ -32,6 +62,7 @@ const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content={new URL(ogImage, canonicalUrl)}>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link

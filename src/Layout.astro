@@ -9,7 +9,6 @@ const {
   ogImage = "/mermind-og.jpeg",
 } = Astro.props;
 
-const isLocal = import.meta.env.DEV || import.meta.env.MODE === "local";
 const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
 
 const siteUrl = Astro.site?.toString() || "https://mermind.ai";
@@ -91,7 +90,7 @@ const jsonLd = {
         }
       })();
     </script>
-    {!isLocal && googleAnalyticsId && (
+    {googleAnalyticsId && (
       <script
         type="text/partytown"
         async

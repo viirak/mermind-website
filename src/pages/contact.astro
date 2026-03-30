@@ -179,28 +179,35 @@ const {
       submitBtn.classList.add("loading");
       const formData = new FormData(form);
       formData.delete("website"); // remove honeypot field
+      const errorHTML =
+        "<h3>Oops!</h3><p>Something went wrong. Please try again later.</p>";
       try {
         const { error } = await actions.submitContact(formData);
-        if (isInputError(error)) {
-          // remove all error class
-          for (const ele of form.querySelectorAll(".error")) {
-            ele.classList.remove("error");
+        if (error) {
+          if (isInputError(error)) {
+            // remove all error class
+            for (const ele of form.querySelectorAll(".error")) {
+              ele.classList.remove("error");
+            }
+            alert.classList.add("error");
+            const listElement = document.createElement("ul");
+            for (const key of Object.keys(error.fields) as Array<
+              keyof typeof error.fields
+            >) {
+              const message = error.fields[key];
+              // input element
+              const ele = document.getElementById(key.toString());
+              if (ele) ele.classList.add("error");
+              // create list item
+              const listItem = document.createElement("li");
+              listItem.textContent = message ? message.join(", ") : null;
+              listElement.appendChild(listItem);
+            }
+            alert.replaceChildren(listElement);
+          } else {
+            alert.classList.add("error");
+            alert.innerHTML = errorHTML;
           }
-          alert.classList.add("error");
-          const listElement = document.createElement("ul");
-          for (const key of Object.keys(error.fields) as Array<
-            keyof typeof error.fields
-          >) {
-            const message = error.fields[key];
-            // input element
-            const ele = document.getElementById(key.toString());
-            if (ele) ele.classList.add("error");
-            // create list item
-            const listItem = document.createElement("li");
-            listItem.textContent = message ? message.join(", ") : null;
-            listElement.appendChild(listItem);
-          }
-          alert.replaceChildren(listElement);
         } else {
           form.remove();
           alert.classList.remove("error");
@@ -209,8 +216,7 @@ const {
         }
       } catch (e) {
         alert.classList.add("error");
-        alert.innerHTML =
-          "<h3>Oops! Something went wrong.</h3><p>Please try again later.</p>";
+        alert.innerHTML = errorHTML;
       } finally {
         submitBtn.disabled = false;
         submitBtn.classList.remove("loading");

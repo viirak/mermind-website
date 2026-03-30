@@ -1,31 +1,31 @@
 {
-	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-	"extends": ["ultracite/biome/core", "ultracite/biome/astro"],
-	"css": {
-		"parser": {
-			"cssModules": true
-		}
-	},
-	"overrides": [
-		{
-			"includes": ["**/*.astro"],
-			"assist": {
-				"actions": {
-					"source": { "organizeImports": "off" }
-				}
-			},
-			"linter": {
-				"rules": {
-					"style": {
-						"useImportType": "off",
-						"useBlockStatements": "off"
-					},
-					"correctness": {
-						"noUnusedVariables": "off",
-						"noUnusedImports": "off"
-					}
-				}
-			}
-		}
-	]
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/biome/core", "ultracite/biome/astro"],
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro"],
+      "assist": {
+        "actions": {
+          "source": { "organizeImports": "off" }
+        }
+      },
+      "linter": {
+        "rules": {
+          "style": {
+            "useImportType": "off",
+            "useBlockStatements": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      }
+    }
+  ]
 }

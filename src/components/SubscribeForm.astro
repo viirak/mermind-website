@@ -29,7 +29,9 @@ import FormField from "./elements/FormField.astro";
       />
       <Button type="submit" label="Subscribe" variant="primary" size="lg" />
     </div>
-    <div class="disclaimer">No spam. No nonesense. Just updates when it matters.</div>
+    <div class="disclaimer">
+      No spam. No nonesense. Just updates when it matters.
+    </div>
   </div>
 </form>
 
@@ -37,8 +39,12 @@ import FormField from "./elements/FormField.astro";
 
 <script>
   import { actions, isInputError } from "astro:actions";
-  const form = document.querySelector("form[action*='subscribe']") as HTMLFormElement;
-  const submitBtn = form?.querySelector("button[type='submit']") as HTMLButtonElement;
+  const form = document.querySelector(
+    "form[action*='subscribe']"
+  ) as HTMLFormElement;
+  const submitBtn = form?.querySelector(
+    "button[type='submit']"
+  ) as HTMLButtonElement;
   const alert = document.getElementById("alert") as HTMLDivElement;
   if (form) {
     form.addEventListener("submit", async (event) => {
@@ -47,14 +53,17 @@ import FormField from "./elements/FormField.astro";
       submitBtn.classList.add("loading");
       const formData = new FormData(form);
       formData.delete("website"); // remove honeypot field
-      const errorHTML = `<h3>Oops!</h3><p>Something went wrong. Please try again later.</p>`;
+      const errorHTML =
+        "<h3>Oops!</h3><p>Something went wrong. Please try again later.</p>";
       try {
         const { error } = await actions.subscribe(formData);
         if (error) {
           if (isInputError(error)) {
             alert.classList.add("error");
             const listElement = document.createElement("ul");
-            for (const key of Object.keys(error.fields) as Array<keyof typeof error.fields>) {
+            for (const key of Object.keys(error.fields) as Array<
+              keyof typeof error.fields
+            >) {
               const message = error.fields[key];
               const listItem = document.createElement("li");
               listItem.textContent = message ? message.join(", ") : null;
@@ -69,7 +78,8 @@ import FormField from "./elements/FormField.astro";
           form.remove();
           alert.classList.remove("error");
           alert.classList.add("success");
-          alert.innerHTML = `<h3>You're on the list!</h3><p>We'll be in touch soon. Thanks for your interest!</p>`;
+          alert.innerHTML =
+            "<h3>You're on the list!</h3><p>We'll be in touch soon. Thanks for your interest!</p>";
         }
       } catch (e) {
         alert.classList.add("error");
@@ -135,7 +145,7 @@ import FormField from "./elements/FormField.astro";
     margin: 0;
     padding-left: 1rem;
   }
-  
+
   .hp-field {
     display: none;
   }

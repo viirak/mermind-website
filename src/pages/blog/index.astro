@@ -5,6 +5,7 @@ import Empty from "../../components/Empty.astro";
 import Header from "../../components/Header.astro";
 import HeaderHero from "../../components/HeaderHero.astro";
 import PostCard from "../../components/PostCard.astro";
+import SubscribeForm from "../../components/SubscribeForm.astro";
 import Button from "../../components/elements/Button.astro";
 import Card from "../../components/elements/Card.astro";
 import Grid from "../../components/elements/Grid.astro";
@@ -76,7 +77,7 @@ variant =
     {featuredPost && (
       <Section>
         <div slot="header" class="section--header">
-          <Heading level={2} size="xl" weight="normal">Featured Post</Heading>
+          <Heading level={2} size="xl">Featured Post</Heading>
           <Paragraph size="lg" dimmed>Here's a post that is imporant to us and we think you'll enjoy reading.
           </Paragraph>
         </div>
@@ -86,7 +87,7 @@ variant =
 
     <Section>
       <div slot="header" class="section--header">
-        <Heading level={2} size="xl" weight="normal">Recent Posts</Heading>
+        <Heading level={2} size="xl">Recent Posts</Heading>
         <Paragraph size="lg" dimmed>
           Here's a selection of posts we have recently published.
           {latestPosts.length > 0 && (
@@ -118,31 +119,22 @@ variant =
       )}
     </Section>
 
-    <Section centered>
-      <Card padding="xl" flat centered striped>
-        <header class="card--header narrow">
-          <Heading level={3} size="xl">Stay up to date with our work</Heading>
-          <Paragraph size="lg" margin="md" dimmed fit>
-            If you want to know when new writing appears, or just want to say
-            hi, feel free to reach out or subscribe via RSS. We don't send
-            newsletters or updates of any kind, but if we did, this is where you
-            would sign up.
+    <Section bg="stripes">
+      <div slot="header" class="section--header">
+        <Heading level={2} size="xl">Stay up to date with our work</Heading>
+        <Paragraph size="lg" dimmed>
+          We write occasionally about things we're building, things we've learned, and decisions that shaped the work. If you want to get it into your inbox when we publish new posts, please leave your email below.
+        </Paragraph>
+      </div>
+      <Card padding="lg" flat>
+        <header class="card--header">
+          <Heading level={3} size="xl">Subscribe</Heading>
+          <Paragraph size="lg" margin="sm" dimmed>
+            Please enter your email address below to stay in the loop. No spam. No nonesense. Just updates when it matters.
           </Paragraph>
         </header>
-        <div class="card--actions">
-          <Button
-            label="Start a conversation"
-            title="Start a conversation with us"
-            variant="primary"
-            href="/contact"
-          >
-            <slot name="contentLeft" slot="contentLeft">
-              <SendIcon />
-            </slot>
-          </Button>
-          <Button href="/blog/rss.xml" variant="outlined" dimmed>
-            RSS Feed
-          </Button>
+        <div>
+          <SubscribeForm />
         </div>
       </Card>
     </Section>

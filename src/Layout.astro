@@ -5,8 +5,8 @@ import Footer from "./components/Footer.astro";
 const {
 	title = "Mermind",
 	description = "Mermind",
-	canonicalUrl = "https://mermind.ai",
-	ogImage = "https://mermind.ai/og-image.png",
+	canonicalUrl = Astro.site,
+	ogImage = "/og-image.png",
 } = Astro.props;
 
 const isLocal = import.meta.env.DEV || import.meta.env.MODE === "local";
@@ -25,13 +25,13 @@ const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
     <link rel="canonical" href={canonicalUrl}>
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
-    <meta property="og:image" content={ogImage}>
+    <meta property="og:image" content={new URL(ogImage, canonicalUrl)}>
     <meta property="og:url" content={canonicalUrl}>
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={ogImage}>
+    <meta name="twitter:image" content={new URL(ogImage, canonicalUrl)}>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link

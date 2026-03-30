@@ -48,7 +48,7 @@ const maxWidth = "62rem";
 <Layout
   title={post.data.title}
   description={post.data.description}
-  canonicalUrl={`https://mermind.ai/blog/${post.id}`}
+  canonicalUrl={`${Astro.site}blog/${post.id}`}
 >
   <article>
     <Header

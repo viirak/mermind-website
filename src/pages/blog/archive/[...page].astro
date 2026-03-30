@@ -38,7 +38,7 @@ const { page }: Props = Astro.props as Props;
 <Layout
   title={`Archive ${page.currentPage} — Mermind`}
   description={`Articles from Mermind.`}
-  canonicalUrl={`https://mermind.ai/blog/archive/${page.currentPage}`}
+  canonicalUrl={`${Astro.site}blog/archive/${page.currentPage}`}
 >
   <Header
 	color1={headerColor1}

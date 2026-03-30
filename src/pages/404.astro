@@ -1,0 +1,46 @@
+---
+import Layout from "../Layout.astro";
+import Header from "../components/Header.astro";
+import HeaderHero from "../components/HeaderHero.astro";
+import Button from "../components/elements/Button.astro";
+import Card from "../components/elements/Card.astro";
+import Heading from "../components/elements/Heading.astro";
+import Paragraph from "../components/elements/Paragraph.astro";
+import Section from "../components/elements/Section.astro";
+---
+
+<Layout
+  title="Page Not Found — Mermind"
+  description="The page you're looking for doesn't exist. Return to the Mermind homepage to explore our operational intelligence platform."
+  canonicalUrl={`${Astro.site}404`}
+>
+  <main>
+    <Section class="">
+      <Card centered padding="lg" outlined>
+        <Paragraph size="xl">404</Paragraph>
+        <Heading level={1} size="xl">Page not found</Heading>
+        <Paragraph>
+          The page you're looking for may have been removed, had its name changed, or is temporarily unavailable. If you think something is wrong, please <a href="/contact">let us know</a>.
+        </Paragraph>
+        <Paragraph>
+          In the meantime, here are a few things you can do:
+        </Paragraph>
+        <div class="card--actions">
+          <Button href="/" variant="primary" label="Go to Homepage">
+          </Button>
+          <Button href="/blog" variant="outlined" label="Visit Our Blog">
+          </Button>
+          <Button href="/contact" variant="outlined" label="Contact Us">
+          </Button>
+        </div>
+      </Card>
+    </Section>
+  </main>
+</Layout>
+
+<style>
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+</style>

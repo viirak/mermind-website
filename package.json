@@ -15,6 +15,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.18",
     "astro": "latest",
     "partytown": "^0.0.0",
     "sequenzy": "^0.10.4"

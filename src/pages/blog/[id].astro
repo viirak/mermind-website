@@ -15,7 +15,9 @@ import ArrowRight from "../../icons/ArrowRight.astro";
 import "../../styles/markdown.css";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
   return posts.map((post) => {
     const category = post.data.category;
     const relatedPosts = posts.filter(

@@ -14,15 +14,14 @@ import Paragraph from "../../components/elements/Paragraph.astro";
 import SVG from "../../components/elements/SVG.astro";
 import Section from "../../components/elements/Section.astro";
 import ArrowRight from "../../icons/ArrowRight.astro";
-import SendIcon from "../../icons/SendIcon.astro";
 
 const posts = await getCollection("blog", ({ data }) => {
-	return data.draft !== true;
+  return data.draft !== true;
 });
 
 const sortedPosts = posts.sort(
-	(a, b) =>
-		new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 
 // get top 1 featured post
@@ -30,36 +29,35 @@ const featuredPost = sortedPosts.find((post) => post.data.isFeatured);
 
 // get latest 6 posts
 const latestPosts = sortedPosts
-	.filter((post) => !post.data.isFeatured)
-	.slice(0, 6);
+  .filter((post) => !post.data.isFeatured)
+  .slice(0, 6);
 
 const {
-	headerColor1 = "rgba(100, 100, 100, 0.1)",
-	headerColor2 = "rgba(50, 150, 50, 0.0)",
-	headerColor3 = "rgba(150, 200, 150, 0.1)",
-	linearColor1 = "rgba(50, 150, 50, 0.1)",
-	background = "linear-gradient(135deg, #aaddfc22, #eaedec22);",
+  headerColor1 = "rgba(100, 100, 100, 0.1)",
+  headerColor2 = "rgba(50, 150, 50, 0.0)",
+  headerColor3 = "rgba(150, 200, 150, 0.1)",
+  linearColor1 = "rgba(50, 150, 50, 0.1)",
+  background = "linear-gradient(135deg, #aaddfc22, #eaedec22);",
 } = Astro.props || {};
 ---
 
 <Layout
-  title = "Writing — Mermind";
-description =
-	"Notes and updates from Mermind on building software, product decisions, and lessons learned along the way.";
-canonicalUrl = {`${Astro.site}blog`}
+  title="Writing — Mermind"
+  description="Notes and updates from Mermind on building software, product decisions, and lessons learned along the way."
+  canonicalUrl={`${Astro.site}blog`}
 >
-  <Header color1 = { headerColor1 };
-color2 = { headerColor2 };
-color3 = {headerColor3}
-linearColor1 = {linearColor1}
-background = {background}>
+  <Header
+    color1={headerColor1}
+    color2={headerColor2}
+    color3={headerColor3}
+    linearColor1={linearColor1}
+    background={background}
+  >
     <HeaderHero
-      altTitle = "Blog";
-title = "Notes from the work.";
-lead =
-	"We write occasionally about things we're building, things we've learned, and decisions that shaped the work.";
-variant =
-	"default"
+      altTitle="Blog"
+      title="Notes from the work."
+      lead="We write occasionally about things we're building, things we've learned, and decisions that shaped the work."
+      variant="default"
     >
       <div slot="graphic">
         <SVG size="100%">
@@ -123,14 +121,18 @@ variant =
       <div slot="header" class="section--header">
         <Heading level={2} size="xl">Stay up to date with our work</Heading>
         <Paragraph size="lg" dimmed>
-          We write occasionally about things we're building, things we've learned, and decisions that shaped the work. If you want to get it into your inbox when we publish new posts, please leave your email below.
+          We write occasionally about things we're building, things we've
+          learned, and decisions that shaped the work. If you want to get it
+          into your inbox when we publish new posts, please leave your email
+          below.
         </Paragraph>
       </div>
       <Card padding="lg" outlined>
         <header class="card--header">
           <Heading level={3} size="xl">Subscribe</Heading>
           <Paragraph size="lg" margin="sm" dimmed>
-            Please enter your email address below to stay in the loop. No spam. No nonesense. Just updates when it matters.
+            Please enter your email address below to stay in the loop. No spam.
+            No nonesense. Just updates when it matters.
           </Paragraph>
         </header>
         <div>
@@ -140,4 +142,3 @@ variant =
     </Section>
   </main>
 </Layout>
-

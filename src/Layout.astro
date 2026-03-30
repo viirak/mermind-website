@@ -3,10 +3,10 @@ import { env } from "cloudflare:workers";
 import Footer from "./components/Footer.astro";
 
 const {
-	title = "Mermind",
-	description = "Mermind",
-	canonicalUrl = Astro.site,
-	ogImage = "/mermind-og.jpeg",
+  title = "Mermind",
+  description = "Mermind",
+  canonicalUrl = Astro.site,
+  ogImage = "/mermind-og.jpeg",
 } = Astro.props;
 
 const isLocal = import.meta.env.DEV || import.meta.env.MODE === "local";
@@ -15,29 +15,29 @@ const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
 const siteUrl = Astro.site?.toString() || "https://mermind.ai";
 
 const jsonLd = {
-	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "Organization",
-			name: "Mermind",
-			url: siteUrl,
-			logo: `${siteUrl}/mermind-icon.svg`,
-			sameAs: [],
-		},
-		{
-			"@type": "WebSite",
-			name: "Mermind",
-			url: siteUrl,
-			potentialAction: {
-				"@type": "SearchAction",
-				target: {
-					"@type": "EntryPoint",
-					urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
-				},
-				"query-input": "required name=search_term_string",
-			},
-		},
-	],
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "Mermind",
+      url: siteUrl,
+      logo: `${siteUrl}/mermind-icon.svg`,
+      sameAs: [],
+    },
+    {
+      "@type": "WebSite",
+      name: "Mermind",
+      url: siteUrl,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
 };
 ---
 

@@ -3,6 +3,7 @@ import Container from "./Container.astro";
 import Logo from "./Logo.astro";
 import ThemeMode from "./ThemeMode.astro";
 import Button from "./elements/Button.astro";
+import SVG from "./elements/SVG.astro";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -11,7 +12,9 @@ const currentPath = Astro.url.pathname;
   <div class="hbar">
     <div class="padder">
         <div class="logo">
-          <Logo />
+          <a href="/" title="Go to Home">
+            <Logo />
+          </a>
         </div>
         <nav class="menu">
           <a class={currentPath === "/" ? "active" : ""} href="/">Home</a>
@@ -37,37 +40,15 @@ const currentPath = Astro.url.pathname;
       </div>
       <div class="mobile-ctrl">
         <button class="hamburger" onclick="toggleMenu()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="menu-icon"
-          >
+          <SVG>
             <path d="M4 5h16" />
             <path d="M4 12h16" />
             <path d="M4 19h16" />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="x-icon"
-          >
+          </SVG>
+          <SVG>
             <path d="M18 6 6 18" />
             <path d="m6 6 12 12" />
-          </svg>
+          </SVG>
         </button>
       </div>
     </div>
@@ -187,11 +168,18 @@ const currentPath = Astro.url.pathname;
 
   .logo {
     display: inline-flex;
+    align-items: center;
     max-width: 140px;
 
     @media only screen and (min-width: 1041px) {
       max-width: 165px;
     }
+  }
+
+  .logo a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
   }
 
   .ctrl {

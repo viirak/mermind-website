@@ -4,8 +4,7 @@ import Container from "../Container.astro";
 interface Props {
 	class?: string;
 	narrow?: boolean;
-	limed?: boolean;
-	dimmed?: boolean;
+	variant?: "default" | "dimmed" | "limed" | "highlight" | "inverted";
 	centered?: boolean;
 	border?: "top" | "bottom" | "y";
 	bg?: "dotted" | "dotted-x" | "paper-grid" | "stripes";
@@ -13,8 +12,7 @@ interface Props {
 
 const {
 	narrow = false,
-	limed = false,
-	dimmed = false,
+	variant = "default",
 	centered = false,
 	class: className,
 	border,
@@ -27,8 +25,7 @@ const {
   class:list={[
     "section",
     narrow && `narrow`,
-    limed && `limed`,
-    dimmed && `dimmed`,
+    variant && `variant-${variant}`,
     centered && `centered`,
     border && `border-${border}`,
     bg && `bg--${bg}`,
@@ -54,12 +51,21 @@ const {
     }
   }
 
-  .section.limed {
+  .section.variant-limed {
     background-color: var(--color-background-limed);
   }
 
-  .section.dimmed {
+  .section.variant-dimmed {
     background-color: var(--color-background-dimmed);
+  }
+
+  .section.variant-highlight {
+    background-color: var(--color-background-highlight);
+  }
+
+  .section.variant-inverted {
+    background-color: var(--color-background-inverted);
+    color: var(--color-text-inverted);
   }
 
   .section.border-top {

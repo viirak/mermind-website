@@ -5,6 +5,7 @@ interface Props {
 	outlined?: boolean;
 	centered?: boolean;
 	striped?: boolean;
+	inverted?: boolean;
 	class?: string;
 	padding?: "sm" | "md" | "lg" | "xl" | "2xl";
 }
@@ -15,6 +16,7 @@ const {
 	outlined = false,
 	centered = false,
 	striped = false,
+	inverted = false,
 	class: className,
 	padding = "md",
 	...rest
@@ -22,7 +24,7 @@ const {
 ---
 
 <div
-  class:list={["card", `padding--${padding}`, flat && `flat`, limed && `limed`, centered && `centered`, striped && `striped`, outlined && `border--outlined`, className]}
+  class:list={["card", `padding--${padding}`, flat && `flat`, limed && `limed`, centered && `centered`, striped && `striped`, outlined && `border--outlined`, inverted && `inverted`, className]}
   {...rest}
 >
   <div class="card-body">
@@ -109,6 +111,12 @@ const {
 
   .card.striped {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 32px, var(--color-background) 32px, var(--color-background) 64px);
+  }
+
+  .card.inverted {
+    background: var(--color-background-inverted);
+    color: var(--color-text-inverted);
+    border-color: var(--color-border-inverted);
   }
 
   .card-body--content {

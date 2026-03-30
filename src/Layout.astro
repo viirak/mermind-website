@@ -15,29 +15,29 @@ const googleAnalyticsId = env.GOOGLE_ANALYTICS_ID;
 const siteUrl = Astro.site?.toString() || "https://mermind.ai";
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "name": "Mermind",
-      "url": siteUrl,
-      "logo": `${siteUrl}/mermind-icon.svg`,
-      "sameAs": []
-    },
-    {
-      "@type": "WebSite",
-      "name": "Mermind",
-      "url": siteUrl,
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${siteUrl}/blog?q={search_term_string}`
-        },
-        "query-input": "required name=search_term_string"
-      }
-    }
-  ]
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			name: "Mermind",
+			url: siteUrl,
+			logo: `${siteUrl}/mermind-icon.svg`,
+			sameAs: [],
+		},
+		{
+			"@type": "WebSite",
+			name: "Mermind",
+			url: siteUrl,
+			potentialAction: {
+				"@type": "SearchAction",
+				target: {
+					"@type": "EntryPoint",
+					urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+				},
+				"query-input": "required name=search_term_string",
+			},
+		},
+	],
 };
 ---
 
@@ -122,7 +122,9 @@ const jsonLd = {
     --light-color-background-dimmed: #e5e5e5;
     --light-color-background-highlight: #f4cf58dd;
     --light-color-background-glass: rgba(255, 255, 255, 0.7);
+    --light-color-background-inverted: #000000;
     --light-color-text: #1a1a1a;
+    --light-color-text-inverted: #ffffff;
     --light-color-text-dimmed: #808080;
     --light-color-primary: #555555;
     --light-color-primary-darker: #444444;
@@ -130,6 +132,7 @@ const jsonLd = {
     --light-color-danger: #e53e3e;
     --light-color-border: #ddddddca;
     --light-color-border-darker: #ccccccca;
+    --light-color-border-inverted: #555555;
     --light-color-border-glass: rgba(255, 255, 255, 0.3);
     --light-color-surface: #e8dede;
     --light-color-surface-lighter: #eee2e2;
@@ -146,7 +149,9 @@ const jsonLd = {
     --dark-color-background-dimmed: #39393980;
     --dark-color-background-highlight: #f4cf58dd;
     --dark-color-background-glass: rgba(60, 60, 60, 0.6);
+    --dark-color-background-inverted: #ffffff;
     --dark-color-text: #f5f5f5;
+    --dark-color-text-inverted: #000000;
     --dark-color-text-dimmed: #808080;
     --dark-color-primary: #ffffff;
     --dark-color-primary-darker: #f1f1f1;
@@ -154,6 +159,7 @@ const jsonLd = {
     --dark-color-danger: #e53e3e;
     --dark-color-border: #444444ca;
     --dark-color-border-darker: #333333ca;
+    --dark-color-border-inverted: #dddddd;
     --dark-color-border-glass: rgba(255, 255, 255, 0.1);
     --dark-color-surface: #424242;
     --dark-color-surface-lighter: #333333;
@@ -170,7 +176,9 @@ const jsonLd = {
     --color-background-dimmed: var(--light-color-background-dimmed);
     --color-background-highlight: var(--light-color-background-highlight);
     --color-background-glass: var(--light-color-background-glass);
+    --color-background-inverted: var(--light-color-background-inverted);
     --color-text: var(--light-color-text);
+    --color-text-inverted: var(--light-color-text-inverted);
     --color-text-dimmed: var(--light-color-text-dimmed);
     --color-primary: var(--light-color-primary);
     --color-primary-darker: var(--light-color-primary-darker);
@@ -178,6 +186,7 @@ const jsonLd = {
     --color-danger: var(--light-color-danger);
     --color-border: var(--light-color-border);
     --color-border-darker: var(--light-color-border-darker);
+    --color-border-inverted: var(--light-color-border-inverted);
     --color-border-glass: var(--light-color-border-glass);
     --color-surface: var(--light-color-surface);
     --color-surface-lighter: var(--light-color-surface-lighter);
@@ -199,7 +208,9 @@ const jsonLd = {
     --color-background-dimmed: var(--dark-color-background-dimmed);
     --color-background-highlight: var(--dark-color-background-highlight);
     --color-background-glass: var(--dark-color-background-glass);
+    --color-background-inverted: var(--dark-color-background-inverted);
     --color-text: var(--dark-color-text);
+    --color-text-inverted: var(--dark-color-text-inverted);
     --color-text-dimmed: var(--dark-color-text-dimmed);
     --color-primary: var(--dark-color-primary);
     --color-primary-darker: var(--dark-color-primary-darker);
@@ -207,6 +218,7 @@ const jsonLd = {
     --color-danger: var(--dark-color-danger);
     --color-border: var(--dark-color-border);
     --color-border-darker: var(--dark-color-border-darker);
+    --color-border-inverted: var(--dark-color-border-inverted);
     --color-border-glass: var(--dark-color-border-glass);
     --color-surface: var(--dark-color-surface);
     --color-surface-lighter: var(--dark-color-surface-lighter);
@@ -226,7 +238,9 @@ const jsonLd = {
     --color-background-dimmed: var(--light-color-background-dimmed);
     --color-background-highlight: var(--light-color-background-highlight);
     --color-background-glass: var(--light-color-background-glass);
+    --color-background-inverted: var(--light-color-background-inverted);
     --color-text: var(--light-color-text);
+    --color-text-inverted: var(--light-color-text-inverted);
     --color-text-dimmed: var(--light-color-text-dimmed);
     --color-primary: var(--light-color-primary);
     --color-primary-darker: var(--light-color-primary-darker);
@@ -234,6 +248,7 @@ const jsonLd = {
     --color-danger: var(--light-color-danger);
     --color-border: var(--light-color-border);
     --color-border-darker: var(--light-color-border-darker);
+    --color-border-inverted: var(--light-color-border-inverted);
     --color-border-glass: var(--light-color-border-glass);
     --color-surface: var(--light-color-surface);
     --color-surface-lighter: var(--light-color-surface-lighter);

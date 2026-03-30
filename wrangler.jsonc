@@ -2,12 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mermind-website",
   "compatibility_date": "2026-03-12",
-  "pages_build_output_dir": "./dist",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "observability": {
     "enabled": true
-  },
-  "assets": {
-    "directory": "./public/",
-    "binding": "STATIC_ASSETS"
   }
 }
